@@ -1,0 +1,24 @@
+{#
+  Base layout inside bod
+  + main interface that use blocks
+  + import some macro helpers
+
+  @author: nico <hello@nusson.ninja>
+
+#}
+{% extends "components/App/template.twig" %}
+
+{% block interface %}
+  <div data-cpt="Interface" >
+    {% include "components/Header/template.twig" %}
+
+    <main role="main">
+      {% block content %}
+        Sorry, no content
+      {% endblock %}
+    </main>
+
+    {% include "components/Footer/template.twig" %}
+  </div>
+
+{% endblock interface %}

@@ -1,0 +1,64 @@
+{#
+  Base layout
+  + main interface that use blocks
+  + import some macro helpers
+
+  @author: nico <hello@nusson.ninja>
+
+#}
+{#
+  header
+  + pretty much everything about <head> tag (but not close)
+
+  @author: nico <hello@nusson.ninja>
+
+#}
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js ie ie6 lt-ie9 lt-ie8 lt-ie7" {{site.language_attributes}}> <![endif]-->
+<!--[if IE 7]><html class="no-js ie ie7 lt-ie9 lt-ie8" {{site.language_attributes}}> <![endif]-->
+<!--[if IE 8]><html class="no-js ie ie8 lt-ie9" {{site.language_attributes}}> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" {{site.language_attributes}}> <!--<![endif]-->
+<head>
+    <meta charset="{{site.charset}}" />
+    <title>
+      {% if wp_title %}
+        {{ wp_title }} - {{ site.name }}
+      {% else %}
+        {{ site.name }}
+      {% endif %}
+    </title>
+    <meta name="description" content="{{site.description}}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <link rel="pingback" href="{{site.pingback_url}}" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{site.theme.uri}}/public/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="{{site.theme.uri}}/public/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{site.theme.uri}}/public/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="{{site.theme.uri}}/public/images/favicons/manifest.json">
+
+{#   <meta http-equiv="Content-Security-Policy"
+    content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:"> #}
+    {% block header_scripts %}
+      {{ function('wp_head') }}
+    {% endblock %}
+  </head>
+  <body class="{{body_class}}"
+    data-cpt="App">
+
+    {% block interface %}
+      {#% include 'components/Interface/template.twig' %#}
+    {% endblock interface %}
+
+    {% block footer_scripts %}
+      {# other footer_styles #}
+      {{ function('output_footer_styles') }}
+      {# jsvars #}
+      {{ function('output_jsvars') }}
+      {# other scripts #}
+      {{ function('wp_footer') }}
+    {% endblock %}
+  </body>
+
+</html>

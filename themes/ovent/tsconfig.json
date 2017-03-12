@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "outDir": "./tsc-build/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "allowJs": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es5",
+    "jsx": "react",
+    "baseUrl": "./",
+    "lib": ["dom","es5","scripthost","es6","es2016.array.include"],
+    "paths": {
+      // "config": ["../config/_dist/config"],
+      // "config-api": ["../config/_dist/api.dist"],
+      // "config-debug": ["../config/_dist/debug.dist"],
+      // "app-base/*": ["app-merges/_base/*"],
+      "vendors/*": ["src/vendors/*"],
+      "app/*": ["src/*"]
+    }
+  },
+  "files": [
+    "./typings/index.d.ts",
+    "./src/components/App/index.ts",
+    "./src/start.ts"
+  ],
+  "include": [
+    // "./typings/index.d.ts",
+    // "./src/vendors/*.tsx",
+    "./src/**/*.ts"
+    // "./config/*.ts"
+  ]
+}

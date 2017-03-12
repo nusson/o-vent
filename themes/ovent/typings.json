@@ -1,0 +1,8 @@
+{
+  "globalDependencies": {
+    "require": "file:typings/custom/require.d.ts"
+  },
+  "dependencies": {
+    "lodash": "registry:npm/lodash#4.0.0+20161015015725"
+  }
+}

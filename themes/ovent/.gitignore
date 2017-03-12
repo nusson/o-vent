@@ -1,0 +1,11 @@
+npm-debug*
+node_modules
+.idea
+
+typings/*
+!typings/custom
+
+public/*
+
+config.*.js
+!config.sample.js

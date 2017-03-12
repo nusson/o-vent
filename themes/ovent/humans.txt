@@ -1,0 +1,22 @@
+/* TEAM */
+
+Mon rôle sur ce projet: Mon nom
+Site: e-mail, lien vers un formulaire de contact, etc.
+Twitter: votre compte Twitter  
+Location: Ville, Pays
+[...]
+						
+
+							
+/* THANKS */
+
+Name: nom ou URL
+[...]
+
+
+/* SITE */
+
+Last update:  AAAA/MM/JJ       
+Standards: HTML5, CSS3, ...
+Components: Modernizr, jQuery, etc.
+Software: Logiciels utilisés pour le développement

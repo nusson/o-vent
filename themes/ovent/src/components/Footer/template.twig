@@ -1,0 +1,63 @@
+{#
+  footer
+
+  @author: nico <hello@nusson.ninja>
+#}
+
+{% set credits = [{
+  link:   {
+    title:  '',
+    href:   ''
+  },
+  image:  {
+    src:  '',
+    alt:  ''
+  }
+}, {
+  link:   {
+    title:  '',
+    href:   ''
+  },
+  image:  {
+    src:  '',
+    alt:  ''
+  }
+}] %}
+
+<footer>
+  <address>
+    {{ pll__('FOOTER_ADDRESS') }}
+    {#
+      // for TTfP plugin crawl
+      pll__('FACEBOOK_BUTTON_TITLE_FR');
+      pll__('FACEBOOK_BUTTON_TITLE_EN');
+      pll__('FACEBOOK_URL_FR');
+      pll__('FACEBOOK_URL_EN');
+    #}
+    {% set facebook = {
+      title:  'FACEBOOK_BUTTON_TITLE_'~lang,
+      href:   'FACEBOOK_URL_'~lang
+    } %}
+    {% set facebookUrl = 'FACEBOOK_BUTTON_TITLE_'~lang %}
+    <a href="{{ pll__(facebook.href) }}"
+      title="{{ pll__(facebook.title) }}"
+      target="_blank">
+      <img src="" alt="{{ pll__(facebook.title) }}">
+    </a>
+  </address>
+
+  <hr class="separator">
+
+  <ul class="list credits">
+    {% for credit in credits %}
+      <li class="item">
+        <a href="{{ credit.link.href }}"
+          title="{{ credit.link.title }}">
+          <img src="{{ credit.image.src }}"
+            alt="{{ credit.image.alt }}" />
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+</footer>
