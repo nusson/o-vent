@@ -27,7 +27,7 @@
             {% set title=(item.attr_title != '')? item.attr_title : item.title %}
             <a href="{{ item.get_link }}"
               class="link {{ item.class }}"
-              title="{{ title }}"
+              title="{{ item.post_title }}"
               target="{{ item.target }}">
               <span class="text">{{ item.title }}</span>
             </a>

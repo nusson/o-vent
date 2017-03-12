@@ -2,6 +2,9 @@ const path              = require("path");
 const webpack           = require("webpack");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer      = require("autoprefixer");
+const jeet              = require("jeet");
+const rupture           = require("rupture");
+const koutoSwiss        = require("kouto-swiss");
 // const appConfig = require("./config/webpack");
 // console.log("App Config:\n" + JSON.stringify(appConfig, null, 2));
 
@@ -13,7 +16,8 @@ const PATH_SRC          = path.resolve(PATH_ROOT, 'src');
 const PATH_BUILD        = path.resolve(PATH_ROOT, 'public');
 const PATH_BUILD_JS     = path.resolve(PATH_BUILD, 'js');
 const PATH_BUILD_CSS    = path.resolve(PATH_BUILD, 'css');
-
+const PATH_NODE_MODULES = path.resolve(PATH_ROOT, 'node_modules');
+const PATH_STYLES       = path.resolve(PATH_SRC, 'styles')
 
 module.exports = function(env){
 
@@ -50,8 +54,8 @@ module.exports = function(env){
       extensions: [".webpack.js", ".web.js",".js", ".json",
         ".ts", ".tsx", ".styl", ".scss", ".css"],
       modules: [
-        path.resolve(PATH_ROOT, "src"),
-        path.resolve(PATH_ROOT, "node_modules")
+        PATH_SRC,
+        PATH_NODE_MODULES
       ],
     },
 
@@ -85,12 +89,26 @@ module.exports = function(env){
               {
                 loader: 'stylus-loader',
                 options: {
-                  includePaths: [
-                    path.resolve(PATH_SRC, 'styles')
+                  compress: false,
+                  use:[
+                    koutoSwiss,
+                    jeet,
+                    rupture,
                   ],
-                  stylus: {
-                    preferPathResolver: 'webpack',
-                  }
+                  import:[
+                    PATH_NODE_MODULES+"/kouto-swiss/index.styl",
+                    PATH_NODE_MODULES+"/jeet/jeet.styl",
+                    PATH_NODE_MODULES+"/rupture/rupture/index.styl",
+                    PATH_STYLES+"/utils/index.styl",
+                  ],
+                  includePaths: [
+                    PATH_SRC,
+                    PATH_NODE_MODULES,
+                    PATH_STYLES
+                  ],
+                  // stylus: {
+                  //   preferPathResolver: 'webpack',
+                  // }
                 }
               },
             ]
