@@ -9,13 +9,13 @@
 
 {% set mobile = 'false' %}
 
-<header data-cpt="Header">
+<header data-cpt="Header" class="header">
   <div class="pannel"
     aria-hidden="{{ mobile }}">
     <a href="/{{lang}}"
       class="logo"
       title="{{ pll__('LOGO_LINK_TITLE') }}">
-      <img src=""
+      <img src="{{ paths.images }}/logo.png"
         alt="{{ pll__('LOGO_ALT') }}">
     </a>
 

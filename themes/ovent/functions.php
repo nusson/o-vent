@@ -189,6 +189,11 @@ class StarterSite extends TimberSite {
     $context['site']          = $this;
     $context['site']->lang    = substr($context['site']->language, 0, 2);
 
+    $context['paths']         = array(
+      'theme' => get_stylesheet_directory_uri(),
+      'images' => get_stylesheet_directory_uri().'/assets/images/',
+    );
+
     // $context['icons'] = $this->register_icons();
     return $context;
   }

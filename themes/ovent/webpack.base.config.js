@@ -18,6 +18,7 @@ const PATH_BUILD_JS     = path.resolve(PATH_BUILD, 'js');
 const PATH_BUILD_CSS    = path.resolve(PATH_BUILD, 'css');
 const PATH_NODE_MODULES = path.resolve(PATH_ROOT, 'node_modules');
 const PATH_STYLES       = path.resolve(PATH_SRC, 'styles')
+const PATH_ASSETS       = path.resolve(PATH_ROOT, 'assets');
 
 module.exports = function(env){
 
@@ -29,9 +30,9 @@ module.exports = function(env){
 
   return {
     entry: {
-      styles: [
-        path.resolve(PATH_SRC, "styles/main.styl")
-      ],
+      // styles: [
+      //   path.resolve(PATH_SRC, "styles/main.styl")
+      // ],
       index: [
         path.resolve(PATH_SRC, "components/App/index.ts"),
       ],
@@ -100,12 +101,15 @@ module.exports = function(env){
                     PATH_NODE_MODULES+"/jeet/jeet.styl",
                     PATH_NODE_MODULES+"/rupture/rupture/index.styl",
                     PATH_STYLES+"/utils/index.styl",
+                    PATH_STYLES+"/main.styl",
                   ],
-                  includePaths: [
-                    PATH_SRC,
-                    PATH_NODE_MODULES,
-                    PATH_STYLES
-                  ],
+                  // include: [
+                  //   PATH_SRC,
+                  //   PATH_NODE_MODULES,
+                  //   PATH_STYLES,
+                  //   // PATH_BUILD,
+                  //   PATH_ASSETS
+                  // ],
                   // stylus: {
                   //   preferPathResolver: 'webpack',
                   // }
@@ -165,12 +169,12 @@ module.exports = function(env){
 
     plugins: [
       cssExtract,
-      // new webpack.optimize.CommonsChunkPlugin({
-      //     name:       'index',
-      //     minChunks:  0,
-      //     async:      true
-      //   }
-      // ),
+      new webpack.optimize.CommonsChunkPlugin({
+          name:       'index',
+          minChunks:  0,
+          async:      true
+        }
+      ),
     ],
   };
 }

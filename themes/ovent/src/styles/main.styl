@@ -7,18 +7,35 @@
 // @import 'utils/all';
 // @import 'includes/reset';
 // @import 'includes/transitions';
-
-import 'jeet'
-// meyer-reset()
-debug()
+@require 'includes/typography'
+meyer-reset()
+// debug()
+html
+  font-size fz-base
+  background-color c-background
 
 html
 body
 #app
   width 100%
   height 100%
-  background red
+  font-family 'OratorStd'
 
-img
-  display block
-  max-width 100%
+.img-wrapper
+  img
+    display block
+    max-width 100%
+
+
+body
+  font-size fz-default
+  line-height lh-default
+
+.article
+  a
+    color c-grey
+    .no-touch &
+      transition color t-speed-light t-ease-out
+      &:hover
+        color c-black
+        transition-timing-function t-ease-in

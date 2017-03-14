@@ -1,4 +1,40 @@
 [data-cpt="Header"]
-  display flex
-  flex-direction column
-  justify-content center
+  position relative
+  width w-menu
+  background-color c-white
+
+
+  .pannel
+    relative 50% false false 50%
+    padding-bottom h-footer
+    transform translate(-50%, -50%)
+    text-align center
+
+  .menu
+    margin-top 2em
+    padding-top 2vh
+
+    .item
+      text-transform uppercase
+      margin-bottom 2vh
+      padding-bottom 2em
+      .link
+        padding 1em 0
+
+    .link
+      color black
+      text-decoration none
+      font-size fz-menu
+      font-weight bold
+      letter-spacing 0
+      .no-touch &
+        transition letter-spacing t-speed-light t-ease-out
+      .no-touch &:hover
+        letter-spacing .2em
+        transition-timing-function t-ease-in
+      &.current-menu-item
+        letter-spacing .2em
+        font-size fz-menu-highlight
+
+  .menu-button
+    display none

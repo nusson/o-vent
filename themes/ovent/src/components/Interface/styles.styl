@@ -2,12 +2,21 @@
 // @import "jeet"
 
 // @import '../../../node_modules/jeet'
+[data-cpt="Interface"]
+  height 100%
 
-html
-body
-#app
-  // debug()
-  // meyer-reset()
-  // normalize()
-  background c_blue
-  // col(1/5)
+  > .header
+    fixed 0 false 0 0
+    z-index z-header
+
+  >.main
+    position relative
+    width calc('100% - 240px')
+    min-height calc('100% - '+h-footer)
+    margin-left w-menu
+    // padding safe-padding
+
+  > .footer
+    position relative
+    height h-footer
+    z-index z-footer

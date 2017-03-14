@@ -11,15 +11,25 @@
  *  [_SIZ_] - sizes
  *  [_ZIN_] - z-index
 */
-c_blue = red
 // /* [_GEN_] - Generic */
 
 // /* [_PAT_] - paths */
 
-// /* [_COL_] - Colors */
-// $c_white:             #FFFFFF;
+/* [_COL_] - Colors */
+c-black         = #333333
+c-grey          = #999999
+c-white         = #FFFFFF
+c-background    = #e5e5e5
 
-// /* [_FON_] - Fonts */
+/* [_FON_] - Fonts */
+fz-base             = 10px
+fz-default          = 1.4rem
+fz-menu             = 1.6rem
+fz-menu-highlight   = 1.8rem
+
+lh-default  = 1.2em
+lh-text     = 1.4em
+
 
 // /* [_RES_] - Responsive */
 // $vp_desktop-medium:   1280px;
@@ -28,16 +38,22 @@ c_blue = red
 // $vp_tablet:           700px;
 
 // /* [_TRA_] - Transitions */
+t-speed-light       = .4s
+t-ease-in           = easing('out-expo')
+t-ease-out          = easing('in-out-quad')
 // $t_push-delay: 1.2;
 // $t_fade-delay: 0.4;
 // $t_push-translate-factor: .4; // >1 quicker translation that new item
 // $t_x-screen-width: 100vw; // to compute translations speed
 
 // /* [_SIZ_] - sizes */
-// $h_header:      40px;
+safe-padding  = 20px;
+w-menu        = 240px
+h-footer      = 140px
 
-// /* [_ZIN_] - z-index */
-// $z_popin:       1000;
-// $z_flash:       100;
-// $z_sticky:      200;
-// $z_header:      150;
+/* [_ZIN_] - z-index */
+z-header  = 100
+z-footer  = 200
+// z-popin   =    1000
+// z-flash   =    100
+// z-sticky  =    200

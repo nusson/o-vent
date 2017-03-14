@@ -73,15 +73,16 @@ function ovent_conditional_scripts() {
       array(), SCRIPTS_VERSION, true);
     wp_enqueue_script('app');
 
-    // if(!(WP_ENV === 'production'
-    //   || WP_ENV === 'staging'
-    //   || WP_ENV === 'development'
-    //   || WP_ENV === 'dev')){
-    //   wp_register_script('style',
-    //     get_template_directory_uri() . '/public/style.js',
-    //     array(), SCRIPTS_VERSION, true);
-    //   wp_enqueue_script('style');
-    // }
+    if(!(WP_ENV === 'production'
+      || WP_ENV === 'staging'
+      || WP_ENV === 'development'
+      || WP_ENV === 'nhusson'
+      || WP_ENV === 'dev')){
+      wp_register_script('styles',
+        get_template_directory_uri() . '/public/styles.js',
+        array(), SCRIPTS_VERSION, true);
+      wp_enqueue_script('styles');
+    }
 
 	}
 }
@@ -93,11 +94,12 @@ function ovent_styles() {
   if(WP_ENV === 'production'
     || WP_ENV === 'staging'
     || WP_ENV === 'development'
+    || WP_ENV === 'nhusson'
     || WP_ENV === 'dev'){
-    wp_register_style('app',
+    wp_register_style('styles',
       get_template_directory_uri() . '/public/styles.css',
       array(), '1.0', 'all');
-    wp_enqueue_style('app');
+    wp_enqueue_style('styles');
   }else{
     // styles are embeded within js ;)
   }
