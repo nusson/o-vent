@@ -9,7 +9,7 @@
 // import objectFitImages from 'object-fit-images';
 import {  IUI, AbstractUI }     from 'app/helpers/AbstractUI'
 import { Header }               from 'app/components/Header'
-// import { Page }                 from 'app/components/Page'
+import { Page }                 from 'app/components/Page'
 import { Logguer }              from "app/helpers/logguer"
 const log  = Logguer('interface')
 require('./styles')
@@ -28,6 +28,6 @@ export class Interface extends AbstractUI implements IInterface{
   }
   init(){
     new Header();
-    // new Page();
+    new Page();
   }
 }

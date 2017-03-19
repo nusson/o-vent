@@ -21,10 +21,12 @@ body
   height 100%
   font-family 'OratorStd'
 
+.article
 .img-wrapper
   img
     display block
     max-width 100%
+    height auto
 
 
 body
@@ -32,6 +34,8 @@ body
   line-height lh-default
 
 .article
+  p:not(.no-margin)
+    padding 0 2em 1em
   a
     color c-grey
     .no-touch &

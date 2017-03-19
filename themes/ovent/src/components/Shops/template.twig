@@ -1,0 +1,69 @@
+{#
+  Shops shortcode
+  + list of shops
+  + google maps
+
+  @author: nico <hello@nusson.ninja>
+#}
+<div data-cpt="Shops" class="shops">
+  <ul class="list">
+    {% for shop in shops %}
+      {% block shopcard %}
+        <li class="item">
+          <article class="shop -card">
+            <header class="title">
+              {{ shop.title }}
+            </header>
+            <p class="address">
+              <i class="fa fa-home"></i>
+              <span class="text">
+                {{ shop.address }}
+                {% if shop.address_bis %}
+                  <br>{{ shop.address_bis }}
+                {% endif %}
+              </span>
+            </p>
+            {% if shop.phone %}
+              <p class="phone">
+                <i class="fa fa-phone"></i>
+                <a href="tel:+1{{ shop.phone|replace({'(':'',')':'','-':'',' ':''}) }}"
+                  class="text"
+                  title="{{ pll__('LABEL_CONTACT_CALL')|replace('%title%', shop.title) }}">{{ shop.phone }}</a>
+              </p>
+            {% endif %}
+            {% if shop.email %}
+              <p class="email">
+                <i class="fa fa-email"></i>
+                <a href="mailto:+1{{ shop.email }}"
+                  class="text"
+                  title="{{ pll__('LABEL_CONTACT_MAILTO')|replace('%title%', shop.title) }}">{{ shop.email }}</a>
+              </p>
+            {% endif %}
+            {% if shop.web %}
+              <p class="web">
+                <i class="fa fa-web"></i>
+                <a href="mailto:+1{{ shop.web }}"
+                  target="_blank"
+                  class="text"
+                  title="{{ pll__('LABEL_CONTACT_WEBSITE')|replace('%title%', shop.title) }}">{{ shop.web }}</a>
+              </p>
+            {% endif %}
+            <p class="direction">
+              <i class="fa fa-direction"></i>
+              <a href="https://www.google.com/maps/dir/Current+Location/{{ shop.map.lat|round(6) }},{{ shop.map.lng|round(6) }}"
+                class="dir" target="_blank">Direction</a>
+            </p>
+          </article>
+        </li>
+      {% endblock %}
+
+    {% endfor %}
+  </ul>
+
+  <div id="map"></div>
+
+  <script type="text/javascript">
+    window.shops	= {{ shops|json_encode() }}
+  </script>
+</div>
+

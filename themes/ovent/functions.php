@@ -38,6 +38,11 @@ if(session_id() == '')
 // @include 'admin/ajax.php';
 
 /*------------------------------------*\
+  [_CON_]  Config
+\*------------------------------------*/
+@include 'admin/config.php';
+
+/*------------------------------------*\
   [_SCR_]  Scripts
 \*------------------------------------*/
 @include 'admin/scripts.php';
@@ -60,7 +65,7 @@ if(session_id() == '')
 /*------------------------------------*\
   [_SHO_] ShortCode Functions
 \*------------------------------------*/
-// @include 'admin/shortcodes.php';
+@include 'admin/shortcodes.php';
 
 /*------------------------------------*\
   [_IMG_]  Image sizes

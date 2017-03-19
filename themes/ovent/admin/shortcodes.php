@@ -5,13 +5,24 @@
  *  @author  nico <hello@nusson.ninja>
  */
 
-// /**
-//  * loader shortcode
-//  * + will be converted by a loader div
-//  * usefull to wait frontend rendering
-//  * [loader]
-//  */
-// function ovent_shortcode_loader($atts, $content = null) {
-//   return '<div class="loader"></div>';
-// }
-// add_shortcode('loader', 'ovent_shortcode_loader');
+
+/**
+ * google map + list of shops
+ */
+function ovent_shops_shortcode( $atts ) {
+  global $post;
+
+  // get shops
+  $shops = array();
+  foreach($post->shops as $item){
+    $shop = new TimberPost($item);
+    array_push($shops, $shop);
+  }
+
+  // render
+  return Timber::compile('components/Shops/template.twig', array(
+    'post'  => $post,
+    'shops' => $shops
+  ));
+}
+add_shortcode('shops', 'ovent_shops_shortcode');
