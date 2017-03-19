@@ -1,6 +1,65 @@
 [data-cpt="Page"]
-  >.header
-    display none
+  h-header = 50vh
+  >.header.-illustrated
+    // position fixed
+    // top 0
+    // width calc( '100% - 240px' )
+    min-height h-header
+    position relative
+    .background
+      fixed 0 0 null 240px
+      height h-header
+      background-position center 30%
+      background-size cover
+      background-repeat no-repeat
+    .content
+      position absolute
+      bottom 30px
+      left 30px
+      font-size fz-title
+      font-weight bold
+      color c-white
+      z-index 2
+      text-shadow:  -1px -1px 0 c-grey,
+                    1px -1px 0 c-grey,
+                    -1px 1px 0 c-grey,
+                    1px 1px 0 c-grey;
 
   >.content
+    position relative
+    // height 100%
     line-height lh-text
+    padding-top 2em
+    z-index 2
+    background-color c-background
+
+
+	p img
+		max-width 100%
+		width auto
+		height auto
+		margin-bottom 20px
+		&.aligncenter
+			left 50%
+			transform translateX(-50%)
+			position relative
+
+		&.alignleft,
+		&.alignright
+			padding 1em
+			margin 0
+
+		&.alignleft
+			float left
+			padding-left 0
+
+		&.alignright
+			float right
+			padding-right 0
+
+
+.-slug-points-de-vente
+  >.header
+    display none
+  >.content
+    height 100%

@@ -56,11 +56,12 @@
           </article>
         </li>
       {% endblock %}
-
+      {#{{ block('shopcard')}}#}
+      {#{{ block('shopcard')}}#}
     {% endfor %}
   </ul>
 
-  <div id="map"></div>
+  <div data-cpt="Map" class="map"></div>
 
   <script type="text/javascript">
     window.shops	= {{ shops|json_encode() }}

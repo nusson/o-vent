@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\nusson\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add kouto-swiss
+  C:\Program Files\nodejs\node.exe C:\Users\nusson\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
 
 PATH: 
-  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Sublime Text 3;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files (x86)\Skype\Phone\;%NVM_HOME%;%NVM_SYMLINK%;C:\Users\nusson\AppData\Roaming\npm;C:\Users\nusson\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\nusson\AppData\Roaming\nvm;C:\Program Files\nodejs
+  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Sublime Text 3;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files (x86)\Skype\Phone\;C:\Users\nusson\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\nusson\AppData\Roaming\npm;C:\Users\nusson\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\nusson\AppData\Roaming\nvm;C:\Program Files\nodejs
 
 Yarn version: 
   0.21.3
@@ -25,11 +25,14 @@ npm manifest:
       "extract-text-webpack-plugin": "^2.1.0",
       "file-loader": "^0.10.1",
       "immutable": "^3.8.1",
+      "jeet": "^7.1.0",
       "json-loader": "^0.5.4",
+      "kouto-swiss": "^1.1.0",
       "node-sass": "^4.5.0",
       "path": "^0.12.7",
       "postcss-csso": "^1.1.2",
       "postcss-loader": "^1.3.3",
+      "rupture": "^0.6.2",
       "rxjs": "^5.2.0",
       "sass-loader": "^6.0.3",
       "source-map-loader": "^0.1.6",
@@ -266,18 +269,7 @@ Lockfile:
     version "0.4.0"
     resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   
-  autoprefixer@^6.3.1:
-    version "6.7.6"
-    resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-6.7.6.tgz#00f05656c7ef73de9d2fd9b4668f6ef6905a855a"
-    dependencies:
-      browserslist "^1.7.5"
-      caniuse-db "^1.0.30000628"
-      normalize-range "^0.1.2"
-      num2fraction "^1.2.2"
-      postcss "^5.2.15"
-      postcss-value-parser "^3.2.3"
-  
-  autoprefixer@^6.7.7:
+  autoprefixer@^6.3.1, autoprefixer@^6.7.7:
     version "6.7.7"
     resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-6.7.7.tgz#1dbd1c835658e35ce3f9984099db00585c782014"
     dependencies:
@@ -495,7 +487,7 @@ Lockfile:
     dependencies:
       pako "~0.2.0"
   
-  browserslist@^1.0.1, browserslist@^1.5.2, browserslist@^1.7.5, browserslist@^1.7.6:
+  browserslist@^1.0.1, browserslist@^1.5.2, browserslist@^1.7.6:
     version "1.7.6"
     resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-1.7.6.tgz#af98589ce6e7ab09618d29451faacb81220bd3ba"
     dependencies:
@@ -594,11 +586,7 @@ Lockfile:
       lodash.memoize "^4.1.0"
       lodash.uniq "^4.3.0"
   
-  caniuse-db@^1.0.30000346, caniuse-db@^1.0.30000628, caniuse-db@^1.0.30000631:
-    version "1.0.30000632"
-    resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000632.tgz#12e3f5c114d19de58e74dec478a327fb2eeb6bcb"
-  
-  caniuse-db@^1.0.30000634:
+  caniuse-db@^1.0, caniuse-db@^1.0.30000346, caniuse-db@^1.0.30000631, caniuse-db@^1.0.30000634:
     version "1.0.30000634"
     resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000634.tgz#439f4b95e715b1fd105196d40c681edd7122e622"
   
@@ -2074,6 +2062,10 @@ Lockfile:
     version "0.1.2"
     resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
   
+  jeet@^7.1.0:
+    version "7.1.0"
+    resolved "https://registry.yarnpkg.com/jeet/-/jeet-7.1.0.tgz#4aeaa0a939306b29607de8fcfa96967d9305a752"
+  
   jodid25519@^1.0.0:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/jodid25519/-/jodid25519-1.0.2.tgz#06d4912255093419477d425633606e0e90782967"
@@ -2189,6 +2181,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/klaw/-/klaw-1.3.1.tgz#4088433b46b3b1ba259d78785d8e96f73ba02439"
     optionalDependencies:
       graceful-fs "^4.1.9"
+  
+  kouto-swiss@^1.1.0:
+    version "1.1.0"
+    resolved "https://registry.yarnpkg.com/kouto-swiss/-/kouto-swiss-1.1.0.tgz#cdff6bc38322bf0e0ed149d73b97b8439cc4a939"
+    dependencies:
+      prefiks "^0.3"
+      stylus "0.54.5"
   
   lazy-cache@^0.2.3:
     version "0.2.7"
@@ -2334,6 +2333,10 @@ Lockfile:
   lodash.uniq@^4.3.0:
     version "4.5.0"
     resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
+  
+  lodash@^2.4.1:
+    version "2.4.2"
+    resolved "https://registry.yarnpkg.com/lodash/-/lodash-2.4.2.tgz#fadd834b9683073da179b3eae6d9c0d15053f73e"
   
   lodash@^3.10.1:
     version "3.10.1"
@@ -3160,16 +3163,7 @@ Lockfile:
       postcss "^5.0.4"
       uniqs "^2.0.0"
   
-  postcss@^5.0.0, postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0.14, postcss@^5.0.16, postcss@^5.0.2, postcss@^5.0.4, postcss@^5.0.5, postcss@^5.0.6, postcss@^5.0.8, postcss@^5.2.10, postcss@^5.2.15:
-    version "5.2.15"
-    resolved "https://registry.yarnpkg.com/postcss/-/postcss-5.2.15.tgz#a9e8685e50e06cc5b3fdea5297273246c26f5b30"
-    dependencies:
-      chalk "^1.1.3"
-      js-base64 "^2.1.9"
-      source-map "^0.5.6"
-      supports-color "^3.2.3"
-  
-  postcss@^5.2.16:
+  postcss@^5.0.0, postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0.14, postcss@^5.0.16, postcss@^5.0.2, postcss@^5.0.4, postcss@^5.0.5, postcss@^5.0.6, postcss@^5.0.8, postcss@^5.2.10, postcss@^5.2.15, postcss@^5.2.16:
     version "5.2.16"
     resolved "https://registry.yarnpkg.com/postcss/-/postcss-5.2.16.tgz#732b3100000f9ff8379a48a53839ed097376ad57"
     dependencies:
@@ -3177,6 +3171,14 @@ Lockfile:
       js-base64 "^2.1.9"
       source-map "^0.5.6"
       supports-color "^3.2.3"
+  
+  prefiks@^0.3:
+    version "0.3.3"
+    resolved "https://registry.yarnpkg.com/prefiks/-/prefiks-0.3.3.tgz#9ac263ae6177eebb44cf143b2ff1178051c966e1"
+    dependencies:
+      caniuse-db "^1.0"
+      lodash "^2.4.1"
+      semver "^4.0.3"
   
   prelude-ls@~1.1.2:
     version "1.1.2"
@@ -3496,6 +3498,10 @@ Lockfile:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-1.0.1.tgz#93a4bbd4942bc574b69a8fa57c71de10ecca7d6e"
   
+  rupture@^0.6.2:
+    version "0.6.2"
+    resolved "https://registry.yarnpkg.com/rupture/-/rupture-0.6.2.tgz#ef4eee91711ff7af64e37f544cfc60a5c08319d3"
+  
   rx@4.1.0:
     version "4.1.0"
     resolved "https://registry.yarnpkg.com/rx/-/rx-4.1.0.tgz#a5f13ff79ef3b740fe30aa803fb09f98805d4782"
@@ -3539,6 +3545,10 @@ Lockfile:
   "semver@2 || 3 || 4 || 5", "semver@2.x || 3.x || 4 || 5", semver@^5.0.1, semver@~5.3.0:
     version "5.3.0"
     resolved "https://registry.yarnpkg.com/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
+  
+  semver@^4.0.3:
+    version "4.3.6"
+    resolved "https://registry.yarnpkg.com/semver/-/semver-4.3.6.tgz#300bc6e0e86374f7ba61068b5b1ecd57fc6532da"
   
   send@0.14.1:
     version "0.14.1"
@@ -3912,7 +3922,7 @@ Lockfile:
       lodash.clonedeep "^4.5.0"
       when "~3.6.x"
   
-  stylus@^0.54.5:
+  stylus@0.54.5, stylus@^0.54.5:
     version "0.54.5"
     resolved "https://registry.yarnpkg.com/stylus/-/stylus-0.54.5.tgz#42b9560931ca7090ce8515a798ba9e6aa3d6dc79"
     dependencies:
@@ -4466,4 +4476,4 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yeast/-/yeast-0.1.2.tgz#008e06d8094320c372dbc2f8ed76a0ca6c8ac419"
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\stock\www\ovent\httpdocs\wp-content\themes\ovent\node_modules\jeet\.github'
+  Error: EPERM: operation not permitted, unlink 'C:\stock\www\ovent\httpdocs\wp-content\themes\ovent\node_modules\google-maps\lib'

@@ -3,6 +3,7 @@
  * @author nico <hello@nusson.ninja>
  */
 import { IUI, AbstractUI }     from 'app/helpers/AbstractUI'
+import { Map }                from 'app/components/Map'
 import { Logguer }             from "app/helpers/logguer"
 const log  = Logguer('shops')
 require('./styles')
@@ -22,12 +23,13 @@ interface Shop{
   }
 }
 
-export class Shops extends AbstractUI{
+export class Shops extends AbstractUI implements IShopComponent{
   constructor(shops:Shop[], elementSelector = '[data-cpt="Shops"]'){
     super(elementSelector)
 
     if(shops.length){
-
+      new Map({})
     }
   }
 }
+

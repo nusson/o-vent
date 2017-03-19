@@ -9,18 +9,28 @@
 {% extends "components/Interface/template.twig" %}
 
 {% block content %}
-  <article data-cpt="Page" class="page">
+  <article data-cpt="Page" class="page -slug-{{ post.slug }}">
 
     {% block header %}
-      <header class="header">
+      {% set styles = '' %}
+      {% set classes = '' %}
+      {% if post._thumbnail_id %}
+        {% set img = TimberImage(post._thumbnail_id) %}
+        {% set styles = 'background-image:url(\''~img.src~'\');' %}
+        {% set classes = '-illustrated' %}
+      {% endif %}
+      <header class="header {{classes}}">
         <div class="content">
           <h1 class="title">{{post.title}}</h1>
         </div>
+        <div class="background"
+          style="{{styles}}"></div>
       </header>
     {% endblock header %}
 
     {% block page_content %}
       <div class="content article">
+        {#{{ dump(post) }}#}
         {{ post.content }}
       </header>
     {% endblock page_content %}
