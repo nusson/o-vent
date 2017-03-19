@@ -32,8 +32,8 @@ export class AbstractUI implements IUI{
   }
   constructor(elementSelector:string, autoInit=true){
     const el:Element  = document.querySelector(elementSelector)
-    console.log(el);
-    
+    // console.log(el);
+
     if(el){
       this.el  = el
       // add listener on destroy

@@ -35,8 +35,10 @@ body
   line-height lh-default
 
 .article
-  p:not(.no-margin)
+  p
     padding 0 2em 1em
+    &.no-margin
+      padding 0;
   a
     color c-grey
     .no-touch &

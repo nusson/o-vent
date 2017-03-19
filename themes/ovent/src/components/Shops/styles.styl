@@ -5,8 +5,10 @@
 
 md-big = 1000px
 md-med = 600px
+h-header = 400px
 
 [data-cpt="Shops"]
+
 
   /* [_LAY_] Layout*/
   box-sizing border-box
@@ -24,25 +26,26 @@ md-med = 600px
     justify-content center
     height 100%
 
-  +above(md-big)
-    .list
-      width 400px
-    .map
-      width calc( '100% - 240px - 400px' )
+  // +above(md-big)
+  //   .list
+  //     width h-header
+  //   .map
+  //     width calc( '100% - 240px - h-header' )
 
-  +below(md-big)
-    padding-top 400px
-    .map
-      order -1
-      height 400px
-      width calc( '100% - 240px' )
-    .list
-      justify-content flex-start
+  // +below(md-big)
+  padding-top h-header
+  .map
+    order -1
+    height h-header
+    width calc( '100% - 240px' )
+  .list
+    justify-content flex-start
 
   +below(md-med)
-    padding-top 200px
+    h-header = 300px
+    padding-top hh-header
     .map
-      height 200px
+      height h-header
 
   /* [_STY_] Style*/
   .list

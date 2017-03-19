@@ -1,9 +1,19 @@
+/**
+ * Pages style
+ *
+ * ---
+ * [_HEA_] Header
+ * [_CON_] Content
+ * [_WYS_] wysiwig
+ * [_SHO_] Page shops
+ * [_BIO_] Page biography
+ */
+
 [data-cpt="Page"]
+
+  /* [_HEA_] Header */
   h-header = 50vh
   >.header.-illustrated
-    // position fixed
-    // top 0
-    // width calc( '100% - 240px' )
     min-height h-header
     position relative
     .background
@@ -25,15 +35,15 @@
                     -1px 1px 0 c-grey,
                     1px 1px 0 c-grey;
 
+  /* [_CON_] Content */
   >.content
     position relative
-    // height 100%
     line-height lh-text
-    padding-top 2em
     z-index 2
     background-color c-background
 
 
+  /* [_WYS_] wysiwig (align images) */
 	p img
 		max-width 100%
 		width auto
@@ -57,7 +67,12 @@
 			float right
 			padding-right 0
 
+/* [_BIO_] Page biography */
+.-slug-biographie
+  >.content
+    padding-top 2em
 
+/* [_SHO_] Page shops */
 .-slug-points-de-vente
   >.header
     display none
