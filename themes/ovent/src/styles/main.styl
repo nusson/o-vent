@@ -9,6 +9,7 @@
 // @import 'includes/transitions';
 @require 'includes/typography'
 @require 'includes/font-awesome'
+@require 'includes/burger'
 meyer-reset()
 // debug()
 html
@@ -34,15 +35,11 @@ body
   font-size fz-default
   line-height lh-default
 
-.article
-  p
-    padding 0 2em 1em
-    &.no-margin
-      padding 0;
-  a
-    color c-grey
-    .no-touch &
-      transition color t-speed-light t-ease-out
-      &:hover
-        color c-black
-        transition-timing-function t-ease-in
+a,
+input,
+button
+  &:focus
+    outline:0
+
+
+

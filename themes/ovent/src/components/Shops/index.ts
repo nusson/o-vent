@@ -28,7 +28,7 @@ export class Shops extends AbstractUI implements IShopComponent{
     super(elementSelector)
 
     if(shops.length){
-      new Map({})
+      new Map({}, '[data-cpt="Page"] > .header > .background')
     }
   }
 }

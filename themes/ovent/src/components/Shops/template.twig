@@ -6,6 +6,7 @@
   @author: nico <hello@nusson.ninja>
 #}
 <div data-cpt="Shops" class="shops">
+
   <ul class="list">
     {% for shop in shops %}
       {% block shopcard %}
@@ -60,8 +61,6 @@
       {#{{ block('shopcard')}}#}
     {% endfor %}
   </ul>
-
-  <div data-cpt="Map" class="map"></div>
 
   <script type="text/javascript">
     window.shops	= {{ shops|json_encode() }}

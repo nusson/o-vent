@@ -3,8 +3,6 @@ const path                    = require("path");
 const ExtractTextPlugin       = require('extract-text-webpack-plugin');
 const config                  = require("./webpack.base.config.js")('build');
 
-config.output.publicPath = "./";
-
 config.plugins.push(
   // Extract to styles.css (optim by postcss-csso)
   new ExtractTextPlugin({

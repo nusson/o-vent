@@ -11,48 +11,17 @@ h-header = 400px
 
 
   /* [_LAY_] Layout*/
-  box-sizing border-box
-  height 100%
-  .map
-    position fixed !important
-    top 0
-    right 0
-    height 100vh
   .list
     position relative
     z-index 2
-    display flex
-    flex-direction column
-    justify-content center
     height 100%
-
-  // +above(md-big)
-  //   .list
-  //     width h-header
-  //   .map
-  //     width calc( '100% - 240px - h-header' )
-
-  // +below(md-big)
-  padding-top h-header
-  .map
-    order -1
-    height h-header
-    width calc( '100% - 240px' )
-  .list
-    justify-content flex-start
-
-  +below(md-med)
-    h-header = 300px
-    padding-top hh-header
-    .map
-      height h-header
 
   /* [_STY_] Style*/
   .list
     background-color c-background
     > .item
       box-sizing border-box
-      padding 1em
+      padding safe-padding
       .no-touch &
         cursor pointer
         transition background-color t-speed-light t-ease-out

@@ -24,12 +24,12 @@ export class Header extends AbstractUI {
   }
   set device(device:Device) {
     if(device === 'mobile'){
-      this.shown  = false
+      this.hide()
       setTimeout(()=>{
         this.el.classList.add('-sidenav')
-      }, 500)
+      }, 0)
     }else{
-      this.shown  = true
+      this.show()
       setTimeout(()=>{
         this.el.classList.remove('-sidenav')
       }, 0)
@@ -43,8 +43,10 @@ export class Header extends AbstractUI {
   set shown(shown:boolean) {
     if(shown){
       this.dom.panel.removeAttribute('aria-hidden')
+      this.dom.menuButton.classList.add('is-active')
     }else{
       this.dom.panel.setAttribute('aria-hidden', 'true')
+      this.dom.menuButton.classList.remove('is-active')
     }
     this._shown  = shown;
   }
@@ -54,15 +56,27 @@ export class Header extends AbstractUI {
 
     this.dom.menuButton = this.el.querySelector('.menu-button')
     this.dom.panel      = this.el.querySelector('.pannel')
+    this.dom.overlay    = this.el.querySelector('.overlay')
     this.init();
   }
 
   init(){
     DOM.click(this.dom.menuButton)
     .subscribe(this.toggle.bind(this))
+
+    DOM.click(this.dom.overlay)
+    .subscribe(this.hide.bind(this))
   }
 
   toggle(){
     this.shown = !this.shown
+  }
+
+  show(){
+    this.shown = true
+  }
+
+  hide(){
+    this.shown = false
   }
 }

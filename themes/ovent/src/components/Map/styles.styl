@@ -1,33 +1,34 @@
-[data-cpt="Map"]
 
-  .infowindow
-    font-family ff-default
-    .item
-      font-size fz-default
-      line-height lh-default
-      padding 0
-      display block
-      margin-bottom .5em
-      >*
-        vertical-align middle
-        line-height 1
+// [data-cpt="Map"]
 
-    .-address
-      font-size fz-medium
-      margin-top .5em
-      margin-bottom 1em
+.infowindow
+  font-family ff-default
+  .item
+    font-size fz-default
+    line-height lh-default
+    padding 0
+    display block
+    margin-bottom .5em
+    >*
+      vertical-align middle
+      line-height 1
 
-    .link
-      text-decoration none
-      color c-black
+  .-address
+    font-size fz-medium
+    margin-top .5em
+    margin-bottom 1em
 
+  .link
+    text-decoration none
+    color c-black
+
+  .header
+    font-size fz-highlight
+    font-weight bold
+
+  +below(800px)
     .header
-      font-size fz-highlight
-      font-weight bold
-
-    +below(800px)
-      .header
-        font-size fz-medium
-      .item
-      .-address
-        font-size fz-default
+      font-size fz-medium
+    .item
+    .-address
+      font-size fz-default

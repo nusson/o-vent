@@ -1,19 +1,33 @@
 [data-cpt="Header"]
   position relative
 
+  pointer-events none
+  >*
+    pointer-events all
+
+  .overlay
+    pointer-events none
+    fixed 0
+    z-index 1
+
   .pannel
     position relative
     width w-menu
     height 100%
     background-color c-white
+    z-index 2
     >.content
       relative 50% false false 50%
       padding-bottom h-footer
       transform translate(-50%, -50%)
       text-align center
 
-    &[aria-hidden="true"]
-      transform translateX(-100%)
+  .pannel[aria-hidden="true"]
+    transform translateX(-100%)
+    + .overlay
+      opacity 0
+      transition-timing-function t-ease-outside
+      pointer-events none
 
   .menu
     margin-top 2em
@@ -43,6 +57,13 @@
 
   .menu-button
     display none
+    absolute 0 null null 100%
+    border none
+    background none
+    background-color c-white
+    padding 1em
+    transform scale(.8)
+    transform-origin top left
 
   &.-sidenav
     .pannel
@@ -50,9 +71,20 @@
       transform translateX(0%)
       transition transform t-speed-medium t-ease-in
       will-change transform
+      >.content
+        padding-bottom 0
+      +.overlay
+        opacity .4
+        background-color c-white
+        transition opacity t-speed-medium t-ease-in
+        pointer-events all
       &[aria-hidden="true"]
         transform translateX(-100%)
-        transition-timing-function t-ease-outside
+        transition-timing-function t-ease-out
+        transition-duration t-speed-light
+        +.overlay
+          opacity 0
+          pointer-events none
 
     .menu-button
       display block

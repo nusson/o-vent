@@ -11,9 +11,6 @@
 
 <header data-cpt="Header" class="header">
 
-  <button class="menu-button"
-    aria-hidden="{{ not mobile }}">|||</button>
-
   <div class="pannel"
     aria-hidden="{{ mobile }}">
     <div class="content">
@@ -41,5 +38,13 @@
         </ol>
       </div>
     </nav>
+    <button class="menu-button burger -spin-r" type="button">
+      <span class="box">
+        <span class="inner"></span>
+      </span>
+    </button>
   </div>
+
+  <div class="overlay"></div>
+
 </header>

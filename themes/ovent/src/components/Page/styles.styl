@@ -13,25 +13,29 @@
 
   /* [_HEA_] Header */
   h-header = 50vh
-  >.header.-illustrated
+  >.header
     min-height h-header
     position relative
     .background
       fixed 0 0 null w-menu
+      position fixed !important
       height h-header
       background-position center 30%
       background-size cover
       background-repeat no-repeat
       .-device-mobile &
         left 0
-    .content
+
+    >.content
       position absolute
-      bottom 30px
-      left 30px
+      bottom 0
+      padding 0 safe-padding
+      line-height lh-default
       font-size fz-title
       font-weight bold
       color c-white
       z-index 2
+      pointer-events none
       text-shadow:  -1px -1px 0 c-grey,
                     1px -1px 0 c-grey,
                     -1px 1px 0 c-grey,
@@ -45,29 +49,42 @@
     background-color c-background
 
 
+
   /* [_WYS_] wysiwig (align images) */
-	p img
-		max-width 100%
-		width auto
-		height auto
-		margin-bottom 20px
-		&.aligncenter
-			left 50%
-			transform translateX(-50%)
-			position relative
+  .article
+    p
+      padding 0 safe-padding 1em
+      &.no-margin
+        padding 0;
+    a
+      color c-grey
+      .no-touch &
+        transition color t-speed-light t-ease-out
+        &:hover
+          color c-black
+          transition-timing-function t-ease-in
+    p img
+      max-width 100%
+      width auto
+      height auto
+      margin-bottom 20px
+      &.aligncenter
+        left 50%
+        transform translateX(-50%)
+        position relative
 
-		&.alignleft,
-		&.alignright
-			padding 1em
-			margin 0
+      &.alignleft,
+      &.alignright
+        padding 1em
+        margin 0
 
-		&.alignleft
-			float left
-			padding-left 0
+      &.alignleft
+        float left
+        padding-left 0
 
-		&.alignright
-			float right
-			padding-right 0
+      &.alignright
+        float right
+        padding-right 0
 
 /* [_BIO_] Page biography */
 .-slug-biographie
@@ -75,8 +92,4 @@
     padding-top 2em
 
 /* [_SHO_] Page shops */
-.-slug-points-de-vente
-  >.header
-    display none
-  >.content
-    height 100%
+// .-slug-points-de-vente
