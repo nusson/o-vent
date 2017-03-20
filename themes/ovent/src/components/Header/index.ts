@@ -6,58 +6,63 @@
  * @author nico <hello@nusson.ninja>
  */
 import { BehaviorSubject }  from 'vendors/rxjs'
+import { DOM }              from 'rx-dom'
 import { AbstractUI, IUI }  from 'app/helpers/AbstractUI'
+import { Device }           from 'app/components/Interface'
+
 import { Logguer }          from "app/helpers/logguer"
 const log  = Logguer('header')
 require('./styles')
 
+
 export class Header extends AbstractUI {
-  state:  State
+  private _shown:boolean
+  private _device:Device = 'desktop';
+
+  get device():Device {
+    return this._device;
+  }
+  set device(device:Device) {
+    if(device === 'mobile'){
+      this.shown  = false
+      setTimeout(()=>{
+        this.el.classList.add('-sidenav')
+      }, 500)
+    }else{
+      this.shown  = true
+      setTimeout(()=>{
+        this.el.classList.remove('-sidenav')
+      }, 0)
+    }
+    this._device  = device;
+  }
+
+  get shown():boolean {
+    return this._shown;
+  }
+  set shown(shown:boolean) {
+    if(shown){
+      this.dom.panel.removeAttribute('aria-hidden')
+    }else{
+      this.dom.panel.setAttribute('aria-hidden', 'true')
+    }
+    this._shown  = shown;
+  }
+
   constructor(elementSelector = '[data-cpt="Header"]'){
     super(elementSelector, false)
-    this.state = new State({
-      shown: true
-    })
 
+    this.dom.menuButton = this.el.querySelector('.menu-button')
+    this.dom.panel      = this.el.querySelector('.pannel')
     this.init();
   }
 
   init(){
-    this.state.subject.subscribe(this.onStateUpdate.bind(this))
+    DOM.click(this.dom.menuButton)
+    .subscribe(this.toggle.bind(this))
   }
 
-  onStateUpdate(state:IState){
-    log('onStateUpdate', state)
-  }
-}
-
-export interface IState {
-  shown:  boolean
-}
-export class State {
-  subject: BehaviorSubject<IState>
-  constructor(props:IState){
-
-    this.subject  = new BehaviorSubject(
-      Object.assign({
-        shown:  true
-      }, props) as IState
-    )
-    return this;
-  }
-
-  get(key:'shown'){
-    if(key){
-      return this.subject.getValue()[key]
-    }
-    return this.subject.getValue();
-  }
-
-  set(data:IState, merge:boolean=false){
-    let next:IState = Object.assign({}, ...[
-      merge ? this.subject.getValue() : null,
-      data
-    ])
-    return this.subject.next(next)
+  toggle(){
+    this.shown = !this.shown
   }
 }

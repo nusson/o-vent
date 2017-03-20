@@ -1,14 +1,19 @@
 [data-cpt="Header"]
   position relative
-  width w-menu
-  background-color c-white
-
 
   .pannel
-    relative 50% false false 50%
-    padding-bottom h-footer
-    transform translate(-50%, -50%)
-    text-align center
+    position relative
+    width w-menu
+    height 100%
+    background-color c-white
+    >.content
+      relative 50% false false 50%
+      padding-bottom h-footer
+      transform translate(-50%, -50%)
+      text-align center
+
+    &[aria-hidden="true"]
+      transform translateX(-100%)
 
   .menu
     margin-top 2em
@@ -38,3 +43,16 @@
 
   .menu-button
     display none
+
+  &.-sidenav
+    .pannel
+      position relative
+      transform translateX(0%)
+      transition transform t-speed-medium t-ease-in
+      will-change transform
+      &[aria-hidden="true"]
+        transform translateX(-100%)
+        transition-timing-function t-ease-outside
+
+    .menu-button
+      display block

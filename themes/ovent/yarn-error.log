@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\nusson\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
+  C:\Program Files\nodejs\node.exe C:\Users\nusson\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @types/rx-dom
 
 PATH: 
   C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Sublime Text 3;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files (x86)\Skype\Phone\;C:\Users\nusson\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\nusson\AppData\Roaming\npm;C:\Users\nusson\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\nusson\AppData\Roaming\nvm;C:\Program Files\nodejs
@@ -24,6 +24,7 @@ npm manifest:
       "css-loader": "^0.26.4",
       "extract-text-webpack-plugin": "^2.1.0",
       "file-loader": "^0.10.1",
+      "google-maps": "^3.2.1",
       "immutable": "^3.8.1",
       "jeet": "^7.1.0",
       "json-loader": "^0.5.4",
@@ -33,6 +34,7 @@ npm manifest:
       "postcss-csso": "^1.1.2",
       "postcss-loader": "^1.3.3",
       "rupture": "^0.6.2",
+      "rx-dom": "^7.0.3",
       "rxjs": "^5.2.0",
       "sass-loader": "^6.0.3",
       "source-map-loader": "^0.1.6",
@@ -1655,6 +1657,10 @@ Lockfile:
       glob "~7.1.1"
       lodash "~4.16.4"
       minimatch "~3.0.2"
+  
+  google-maps@^3.2.1:
+    version "3.2.1"
+    resolved "https://registry.yarnpkg.com/google-maps/-/google-maps-3.2.1.tgz#c0758f2b175a4a8d110c1abb1fc4cc38c1176e06"
   
   graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
     version "4.1.11"
@@ -3502,7 +3508,13 @@ Lockfile:
     version "0.6.2"
     resolved "https://registry.yarnpkg.com/rupture/-/rupture-0.6.2.tgz#ef4eee91711ff7af64e37f544cfc60a5c08319d3"
   
-  rx@4.1.0:
+  rx-dom@^7.0.3:
+    version "7.0.3"
+    resolved "https://registry.yarnpkg.com/rx-dom/-/rx-dom-7.0.3.tgz#f876f398453ffc346ac65187edd6e717ed11fe09"
+    dependencies:
+      rx "*"
+  
+  rx@*, rx@4.1.0:
     version "4.1.0"
     resolved "https://registry.yarnpkg.com/rx/-/rx-4.1.0.tgz#a5f13ff79ef3b740fe30aa803fb09f98805d4782"
   
@@ -4476,4 +4488,4 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yeast/-/yeast-0.1.2.tgz#008e06d8094320c372dbc2f8ed76a0ca6c8ac419"
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\stock\www\ovent\httpdocs\wp-content\themes\ovent\node_modules\google-maps\lib'
+  Error: EPERM: operation not permitted, unlink 'C:\stock\www\ovent\httpdocs\wp-content\themes\ovent\node_modules\acorn-object-spread\node_modules\.bin'

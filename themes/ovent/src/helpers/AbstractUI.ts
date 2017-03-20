@@ -13,25 +13,25 @@
  */
 
 export interface IUI{
-  el:          Element
+  el:          HTMLElement
   handlers:    {
     ondestroy:  ()=>void
   }
-  dom:         {}
+  dom:         any
   init:        ()=>void
   destroy:     ()=>void
 }
 
 export class AbstractUI implements IUI{
-  el:Element
-  dom      = {}
+  el:HTMLElement
+  dom:any = {}
   handlers = {
     ondestroy(){
       this.destroy()
     }
   }
   constructor(elementSelector:string, autoInit=true){
-    const el:Element  = document.querySelector(elementSelector)
+    const el:HTMLElement  = document.querySelector(elementSelector) as HTMLElement
     // console.log(el);
 
     if(el){

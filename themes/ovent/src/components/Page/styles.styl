@@ -17,11 +17,13 @@
     min-height h-header
     position relative
     .background
-      fixed 0 0 null 240px
+      fixed 0 0 null w-menu
       height h-header
       background-position center 30%
       background-size cover
       background-repeat no-repeat
+      .-device-mobile &
+        left 0
     .content
       position absolute
       bottom 30px
