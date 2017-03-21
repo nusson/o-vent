@@ -32,6 +32,10 @@ $templates = array(
   'components/Page/template.twig'
 );
 
+if ( $post->_wp_page_template === 'template-home.php' ) {
+	array_unshift( $templates, 'components/pages/Home/template.twig' );
+}
+
 // if($post->post_name === 'points-de-vente'){
 //   array_unshift($templates, 'components/Page/template.twig');
 //   // array_unshift($templates, 'components/pages/Shops/template.twig');

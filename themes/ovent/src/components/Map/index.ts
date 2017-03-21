@@ -1,5 +1,12 @@
 /**
  * Google Map
+ *
+ * @todo add class when info window to hide page title
+ * @todo highlist list item
+ * @todo skin map
+ * @todo remove controls
+ * @todo nice fade in when ready
+ *
  * @author nico <hello@nusson.ninja>
  */
 import { IUI, AbstractUI }      from 'app/helpers/AbstractUI'

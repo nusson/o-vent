@@ -20,5 +20,6 @@ export class Page extends AbstractUI implements IPage{
     if(shops){
       new Shops(shops)
     }
+    log('page construct', this)
   }
 }

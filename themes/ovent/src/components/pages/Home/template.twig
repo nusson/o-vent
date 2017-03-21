@@ -4,17 +4,88 @@
   @author: nico <hello@nusson.ninja>
 
 #}
-{% extends "components/Page/template.twig" %}
+{% extends "components/Interface/template.twig" %}
 
-{% block header %}
-  <header class="header">
-    header slideshow
-  </header>
-{% endblock header%}
+{% block content %}
+  <div data-cpt="Home" class="page -slug-{{ post.slug }}">
 
-{% block page_content %}
-  <div class="content">
-    <p>content home</p>
-    {{ post.content }}
-  </header>
-{% endblock page_content %}
+    {# Main content (without slideshows) #}
+    {% block header %}
+      {% if post._thumbnail_id %}
+        {% set img = TimberImage(post._thumbnail_id) %}
+        {% set styles = 'background-image:url(\''~img.src~'\');' %}
+      {% endif %}
+      <header class="header {{classes}}">
+        <div class="content">
+
+          {#<h1 class="title">{{post.title}}</h1>#}
+          <div class="text">
+            {{ post.content | raw }}
+          </div>
+        </div>
+        <div class="background"
+          style="{{styles}}"></div>
+      </header>
+    {% endblock header %}
+
+    {% block page_content %}
+      {% set items = 0 %}
+      {% if post.items_0_title %}
+        {% set items = 1 %}
+      {% endif %}
+      {% if post.items_1_title %}
+        {% set items = 2 %}
+      {% endif %}
+
+      {% if items %}
+
+        {# Buttons (if click, show slideshow) #}
+        <div class="actions">
+          {% for index in 0..(items-1) %}
+            <button data-id="{{ index }}">{{ post.custom['items_'~index~'_title'] }}</button>
+          {% endfor %}
+        </div>
+
+
+        {# slideshows - would appear in place of header #}
+        <div class="slideshows" data-slideshow="0">
+          {% for index in 0..(items-1) %}
+            {% set content = post.custom['items_'~index~'_content'] %}
+            {% set images = post.custom['items_'~index~'_images'] %}
+            <article class="slideshow">
+              {% if content %}
+                <header class="header">
+                  {{ content }}
+                </header>
+              {% endif %}
+              <ol class="slides">
+                {% for index, image in images %}
+                  {% set img = TimberImage(image) %}
+                  <li data-id="{{ index }}"
+                    class="slide">
+                    <img src="{{ img.src }}"
+                      alt="{{ img.caption }}" />
+                    {#{{ dump(img) }}#}
+                  </li>
+                {% endfor %}
+              </ol>
+              <button class="previous">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+              </button>
+              <button class="next">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </button>
+              <ol class="bullets">
+                {% for index, image in images %}
+                  <button data-id="{{ index }}">-</button>
+                {% endfor %}
+              </ol>
+            </article>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {#{{ dump(post) }}#}
+    {% endblock page_content %}
+
+  </div>
+{% endblock %}

@@ -10,6 +10,7 @@
 import {  IUI, AbstractUI }     from 'app/helpers/AbstractUI'
 import { Header }               from 'app/components/Header'
 import { Page }                 from 'app/components/Page'
+import { Homepage }             from 'app/components/pages/Home'
 import debounce                 from 'app/helpers/debounce'
 import { Logguer }              from "app/helpers/logguer"
 const log  = Logguer('interface')
@@ -31,7 +32,13 @@ export class Interface extends AbstractUI{
   }
   init(){
     this.header = new Header();
-    this.page   = new Page();
+
+    const homeSelector  = '[data-cpt="Home"]';
+    if(this.el.querySelector(homeSelector)){
+      this.page = new Homepage();
+    }else{
+      this.page   = new Page();
+    }
 
     // watch resize
     const onresizehandler = debounce(this.setDeviceFromViewport.bind(this), 250)

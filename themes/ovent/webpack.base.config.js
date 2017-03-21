@@ -50,6 +50,7 @@ module.exports = function(env){
     resolve: {
       alias: {
         app:      PATH_SRC,
+        assets:   PATH_ASSETS,
       },
       // Add '.ts' and '.tsx' as resolvable extensions.
       extensions: [".webpack.js", ".web.js",".js", ".json",
@@ -103,16 +104,10 @@ module.exports = function(env){
                     PATH_STYLES+"/utils/index.styl",
                     PATH_STYLES+"/main.styl",
                   ],
-                  // include: [
-                  //   PATH_SRC,
-                  //   PATH_NODE_MODULES,
-                  //   PATH_STYLES,
-                  //   // PATH_BUILD,
-                  //   PATH_ASSETS
-                  // ],
-                  // stylus: {
-                  //   preferPathResolver: 'webpack',
-                  // }
+                  // include: PATH_ROOT,
+                  stylus: {
+                    preferPathResolver: 'webpack',
+                  }
                 }
               },
             ]
