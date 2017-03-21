@@ -70,8 +70,8 @@ if(session_id() == '')
 /*------------------------------------*\
   [_IMG_]  Image sizes
 \*------------------------------------*/
-add_action( 'after_setup_theme', 'bayam_images_sizes' );
-function bayam_images_sizes() {
+add_action( 'after_setup_theme', 'ovent_images_sizes' );
+function ovent_images_sizes() {
   add_image_size( 'mobile', 640 );
   add_image_size( 'tablet', 1440 );
   add_image_size( 'desktop', 1920 );
@@ -198,6 +198,8 @@ class StarterSite extends TimberSite {
       'theme' => get_stylesheet_directory_uri(),
       'images' => get_stylesheet_directory_uri().'/assets/images/',
     );
+
+    $context['credits']   = get_field('credits', 'option');
 
     // $context['icons'] = $this->register_icons();
     return $context;

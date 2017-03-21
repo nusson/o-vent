@@ -1,6 +1,35 @@
 [data-cpt="Footer"]
   background-color c-white
 
+  display flex
+  align-items center
+
+  .credits
+    border-left 1px solid c-black
+    flex-grow 1
+    display flex
+    justify-content space-around
+    img
+      max-height h-footer - 20
+
   .address
+    padding 0 safe-padding
+    margin-right 20px
+    position relative
+    display inline-block
     font-weight bold
     font-size fz-medium
+    line-height lh-text
+    a
+      display block
+      color c-black
+      text-decoration none
+      .no-touch &
+        transition color t-speed-light t-ease-out
+        &:hover
+          color lighten(c-black, 20%)
+          transition-timing-function t-ease-in
+
+      &.facebook
+        absolute null 40px 3px null
+        font-size 30px

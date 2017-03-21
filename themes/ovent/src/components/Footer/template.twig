@@ -4,61 +4,45 @@
   @author: nico <hello@nusson.ninja>
 #}
 
-{% set credits = [{
-  link:   {
-    title:  '',
-    href:   ''
-  },
-  image:  {
-    src:  '',
-    alt:  ''
-  }
-}, {
-  link:   {
-    title:  '',
-    href:   ''
-  },
-  image:  {
-    src:  '',
-    alt:  ''
-  }
-}] %}
-
 <footer data-cpt="Footer" class="footer">
   <address class="address">
     Ô vent éco-création
     <br>Ericka P.Leblanc
     <br>Montreal, Québec, CANADA
-    <br><a href="mailto:info@ovent.com" title="{{ pll__('ADDRESS_MAILTO_TITLE') }}">info@ovent.com</a>
-    <br><a href="tel:+15146862486" title="{{ pll__('ADDRESS_TEL_TITLE') }}">514.686.2486</a>
-    {#
-      // for TTfP plugin crawl
-      pll__('FACEBOOK_BUTTON_TITLE_FR');
-      pll__('FACEBOOK_BUTTON_TITLE_EN');
-      pll__('FACEBOOK_URL_FR');
-      pll__('FACEBOOK_URL_EN');
-    #}
-    {% set facebook = {
-      title:  'FACEBOOK_BUTTON_TITLE_'~lang,
-      href:   'FACEBOOK_URL_'~lang
-    } %}
-    {% set facebookUrl = 'FACEBOOK_BUTTON_TITLE_'~lang %}
-    <a href="{{ pll__(facebook.href) }}"
-      title="{{ pll__(facebook.title) }}"
-      target="_blank">
-      <img src="" alt="{{ pll__(facebook.title) }}">
-    </a>
+    <div class="links">
+      <a href="mailto:info@ovent.com" title="{{ pll__('ADDRESS_MAILTO_TITLE') }}">info@ovent.com</a>
+      <a href="tel:+15146862486" title="{{ pll__('ADDRESS_TEL_TITLE') }}">514.686.2486</a>
+      {#
+        // for TTfP plugin crawl
+        pll__('FACEBOOK_BUTTON_TITLE_FR');
+        pll__('FACEBOOK_BUTTON_TITLE_EN');
+        pll__('FACEBOOK_URL_FR');
+        pll__('FACEBOOK_URL_EN');
+      #}
+      {% set facebook = {
+        title:  'FACEBOOK_BUTTON_TITLE_'~lang,
+        href:   'FACEBOOK_URL_'~lang
+      } %}
+      {% set facebookUrl = 'FACEBOOK_BUTTON_TITLE_'~lang %}
+      <a href="{{ pll__(facebook.href) }}"
+        title="{{ pll__(facebook.title) }}"
+        target="_blank"
+        class="facebook">
+        <i class="fa fa-facebook-square" aria-hidden="true"></i>
+      </a>
+    </div>
   </address>
 
-  <hr class="separator">
+  <span class="separator"></span>
 
   <ul class="list credits">
     {% for credit in credits %}
+      {% set image = TimberImage(credit.image) %}
       <li class="item">
-        <a href="{{ credit.link.href }}"
-          title="{{ credit.link.title }}">
-          <img src="{{ credit.image.src }}"
-            alt="{{ credit.image.alt }}" />
+        <a href="{{ credit.link }}"
+          title="{{ credit.label }}">
+          <img src="{{ image.src }}"
+            alt="{{ image.alt }}" />
         </a>
       </li>
     {% endfor %}
