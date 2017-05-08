@@ -4,7 +4,6 @@
  * ---
  * [_LAY_] Layout
  */
-@require './slideshow'
 
 [data-cpt="Home"]
   display flex
@@ -28,6 +27,12 @@
     height 100vh
     .bullets
       display none
+    .header
+      color c-white
+      text-shadow:  -1px -1px 0 c-grey,
+                    1px -1px 0 c-grey,
+                    -1px 1px 0 c-grey,
+                    1px 1px 0 c-grey;
 
 
   .second-section
@@ -70,14 +75,9 @@
     justify-content center
     height 100%
     text-align center
-    color c-white
     color c-black
     font-size fz-big
     line-height lh-text
-    // text-shadow:  -1px -1px 0 c-grey,
-    //               1px -1px 0 c-grey,
-    //               -1px 1px 0 c-grey,
-    //               1px 1px 0 c-grey;
     h1, h2
       width 100%
       padding 0 safe-padding

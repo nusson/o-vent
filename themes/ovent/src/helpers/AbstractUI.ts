@@ -30,8 +30,13 @@ export class AbstractUI implements IUI{
       this.destroy()
     }
   }
-  constructor(elementSelector:string, autoInit=true){
-    const el:HTMLElement  = document.querySelector(elementSelector) as HTMLElement
+  constructor(elementSelector:string|HTMLElement, autoInit=true){
+    let el:HTMLElement
+    if(typeof(elementSelector) === 'string'){
+      el  = document.querySelector(elementSelector) as HTMLElement
+    }else{
+      el  = elementSelector
+    }
     // console.log(el);
 
     if(el){

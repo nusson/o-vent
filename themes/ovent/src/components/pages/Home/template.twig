@@ -68,8 +68,11 @@
   </div>
 {% endblock %}
 
+{% set slideshowIndex = 0 %}
 {% block slideshow %}
-  <div class="slideshow -loading" data-cpt="Slidehow">
+  <div class="slideshow -loading"
+    data-cpt="Slideshow"
+    data-index="{{ slideshowIndex }}">
     <ol class="slides">
       {% for index, slide in slides %}
         {#{{ dump(slide) }}#}
