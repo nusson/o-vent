@@ -4,11 +4,13 @@
  * ---
  * [_LAY_] Layout
  */
+@require './slideshow'
 
 [data-cpt="Home"]
   display flex
   flex-direction column
   justify-content space-between
+
 
   .header .background,
   .slideshows
@@ -20,46 +22,78 @@
     background-size cover
     background-position center 30%
 
-  .slideshow
-    display none
+
+  .main-section
+    position relative
+    height 100vh
+    .bullets
+      display none
+
+
+  .second-section
+    // overflow hidden
+    position relative
+    display flex
+    height 70vh
+    .header
+      width 40%
+      min-width 300px
+    .slideshow
+      height 100%
+    &:nth-child(odd)
+      .header
+        order 1
+
+    .-device-tablet &
+    .-device-mobile &
+      height auto
+      flex-direction column
+      .header
+        min-width 100%
+        display block
+        order 0 !important
+        width 100%
+        padding safe-padding
+      .slideshow
+        height 300px
+
+
+
 
 
   .header
-    flex-grow 1
-    display flex // to keep height
-
-    .background
+    position relative
+    z-index 2
+    display flex
+    flex-direction column
+    align-items center
+    justify-content center
+    height 100%
+    text-align center
+    color c-white
+    color c-black
+    font-size fz-big
+    line-height lh-text
+    // text-shadow:  -1px -1px 0 c-grey,
+    //               1px -1px 0 c-grey,
+    //               -1px 1px 0 c-grey,
+    //               1px 1px 0 c-grey;
+    h1, h2
       width 100%
-      height 100%
+      padding 0 safe-padding
+      display block
+    h1
+      font-size fz-title
+      line-height lh-text
 
-    .content
-      display flex
-      flex-direction column
-      justify-content space-around
-      position relative
-      width 100%
-      padding 2em
-      z-index 2
-      .text
-        text-align center
-        color c-white
-        text-shadow:  -1px -1px 0 c-grey,
-                      1px -1px 0 c-grey,
-                      -1px 1px 0 c-grey,
-                      1px 1px 0 c-grey;
+    .-device-mobile &
+      font-size fz-highlight
+      h1
         font-size fz-big
         line-height lh-text
-        h1
-          font-size fz-title
-          line-height lh-text
-
-        .-device-mobile &
-          font-size fz-highlight
-          h1
-            font-size fz-big
-            line-height lh-text
 
   .actions
+    absolute null 0 0 0
     height 100px
     text-align center
     display flex

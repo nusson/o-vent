@@ -17,6 +17,7 @@ const log  = Logguer('interface')
 require('./styles')
 require('app/components/Page/styles')
 require('app/components/Footer/styles')
+require('app/styles/main')
 
 const WIDTH_DESKTOP   = 1024
 const WIDTH_MOBILE    = 600

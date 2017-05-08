@@ -60,10 +60,11 @@ export class Map extends AbstractUI implements IMapComponent{
       this.options  = Object.assign({
         mapTypeId:          google.maps.MapTypeId.ROADMAP,
         scrollwheel:        false,
-        disableDefaultUI:   false,
+        disableDefaultUI:   true,
         zoom:               8,
         center:             this.coords,
-        resize:             false
+        resize:             false,
+        styles:             styles
       }, options)
 
       this.create()
@@ -95,15 +96,7 @@ export class Map extends AbstractUI implements IMapComponent{
           this.map.setCenter(this.coords)
         },
         (error)=>{
-          log('google', google)
-          const ClientLocation:any	= (google as any).loader.ClientLocation
-          if(ClientLocation){
-            this.coords = {
-              lat:  ClientLocation.latitude,
-              lng:  ClientLocation.longitude
-            }
-            this.map.setCenter(this.coords)
-          }
+          console.warn('no localisation')
         }
       )
     }
@@ -205,3 +198,88 @@ export class Map extends AbstractUI implements IMapComponent{
   }
 }
 
+
+const styles = [
+  {
+    "stylers": [
+      {
+        "saturation": -5
+      },
+      {
+        "lightness": 25
+      },
+      {
+        "visibility": "simplified"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "landscape",
+    "stylers": [
+      {
+        "saturation": -40
+      },
+      {
+        "lightness": 35
+      },
+      {
+        "visibility": "on"
+      },
+      {
+        "weight": 2.5
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.business",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  }
+]

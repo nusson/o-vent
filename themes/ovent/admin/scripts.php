@@ -67,6 +67,7 @@ function ovent_conditional_scripts() {
     if(!(WP_ENV === 'production'
       || WP_ENV === 'staging'
       || WP_ENV === 'development'
+      || WP_ENV === 'busbz'
       // || WP_ENV === 'nhusson'
       || WP_ENV === 'dev')){
       wp_register_script('vendors',
@@ -95,10 +96,11 @@ function ovent_styles() {
   if(WP_ENV === 'production'
     || WP_ENV === 'staging'
     || WP_ENV === 'development'
+    || WP_ENV === 'busbz'
     || WP_ENV === 'nhusson'
     || WP_ENV === 'dev'){
     wp_register_style('styles',
-      get_template_directory_uri() . '/public/styles.css',
+      get_template_directory_uri() . '/public/styles.css?2',
       array(), '1.0', 'all');
     wp_enqueue_style('styles');
   }else{
