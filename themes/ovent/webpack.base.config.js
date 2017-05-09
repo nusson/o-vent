@@ -51,6 +51,7 @@ module.exports = function(env){
       alias: {
         app:      PATH_SRC,
         assets:   PATH_ASSETS,
+        TweenMax: "gsap/src/uncompressed/TweenMax",
       },
       // Add '.ts' and '.tsx' as resolvable extensions.
       extensions: [".webpack.js", ".web.js",".js", ".json",

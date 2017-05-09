@@ -7,12 +7,19 @@
  */
 import { BehaviorSubject }  from 'vendors/rxjs'
 import { DOM }              from 'rx-dom'
+import * as gsap            from 'gsap'
 import { AbstractUI, IUI }  from 'app/helpers/AbstractUI'
 import { Device }           from 'app/components/Interface'
 
 import { Logguer }          from "app/helpers/logguer"
 const log  = Logguer('header')
 require('./index.styl')
+
+const SLIDESHOW_SPEED = .9
+const Z_INDEX_TOP           = '100'
+const Z_INDEX_BOTTOM        = '50'
+const Z_INDEX_OTHERS        = '1'
+const DELAY_TICK            = 17
 
 interface State{
   index?:     number,
@@ -33,13 +40,12 @@ class SlideshowController{
     }, opts)
     this.subject  = new Rx.BehaviorSubject(this.state);
     this.subject.subscribe(state=>{
-      console.log('state', state)
       this.state = state
     })
 
-    this.subject.debounce(this.state.autoDelay)
-    .flatMap(this.doNext.bind(this))
-    .subscribe()
+    // this.subject.debounce(this.state.autoDelay)
+    // .flatMap(this.doNext.bind(this))
+    // .subscribe()
   }
   dispose(){
     this.subject.dispose()
@@ -81,6 +87,12 @@ class SlideshowController{
       return x+1
     })
     .flatMap(this.$loop.bind(this))
+    .map(index=>{
+      return {
+        index: index,
+        direction: 'left'
+      }
+    })
     .flatMap(this.go.bind(this))
   }
   doPrevious(){
@@ -89,16 +101,21 @@ class SlideshowController{
       return x-1
     })
     .flatMap(this.$loop.bind(this))
-    .flatMap(this.go.bind(this))
-  }
-  go(index:number){
-    return this.$getDirection(index)
-    .map((direction:'left'|'right')=>{
+    .map(index=>{
       return {
         index: index,
-        direction: direction
+        direction: 'right'
       }
     })
+    .flatMap(this.go.bind(this))
+  }
+  go(state:State|number){
+    let data:State = Object.assign({
+      index: typeof(state) === 'number' ? state : 0,
+      direction: 'right'
+    }, typeof(state) === 'object' ? state : {})
+
+    return Rx.Observable.just(data)
     .doOnNext(this.updateSubject.bind(this))
   }
 }
@@ -111,6 +128,7 @@ export class Slideshow extends AbstractUI {
     super(el, false)
 
     this.dom = Object.assign({}, this.dom, {
+      wrapper: this.el.querySelector('.slides'),
       slides: this.el.querySelectorAll('.slide'),
       nav: this.el.querySelectorAll('.nav'),
       nextBtn: this.el.querySelector('.next'),
@@ -120,7 +138,7 @@ export class Slideshow extends AbstractUI {
     })
 
     this.controler  = new SlideshowController({
-      length:this.dom.slides.length
+      length:this.dom.slides.length-1
     })
 
     this.init();
@@ -138,6 +156,15 @@ export class Slideshow extends AbstractUI {
   }
 
   init(){
+
+    // let widthWrapper  = (this.dom.slides.length * 100) + '%'
+    // let widthSlide    = Math.floor((100 / this.dom.slides.length)) + '%'
+    // this.dom.wrapper.style.width = widthWrapper
+    // this.dom.slides.forEach( (slide:HTMLElement)=>{
+    //   slide.style.width = widthSlide
+    // })
+    // log('init', width)
+
     this.$subscribscrions = [
       this.controler.subject.subscribe(this.update.bind(this)),
       this.$observeNext(),
@@ -149,7 +176,63 @@ export class Slideshow extends AbstractUI {
   }
 
   update(state:State){
-    console.log('xxx update', state)
+    this.dom.slides.forEach((slide:HTMLElement, index:number)=>{
+      if(state.direction === 'left' ){ // || state.index === 0
+        if(index === state.index){
+          return this.translateFromLeft(slide)
+        }
+        if(index === state.index - 1){
+          return gsap.TweenMax.set(slide, {
+            x:      0,
+            zIndex: Z_INDEX_BOTTOM
+          })
+        }
+        return slide.style.zIndex = Z_INDEX_OTHERS
+      }else{
+        if(index === state.index){
+          return this.translateFromRight(slide)
+        }
+        if(state.index === state.length){
+          if(index === 0){
+            return gsap.TweenMax.set(slide, {
+              x:      0,
+              zIndex: Z_INDEX_BOTTOM
+            })
+          }
+        }else if(index === state.index + 1){
+          return gsap.TweenMax.set(slide, {
+            x:      0,
+            zIndex: Z_INDEX_BOTTOM
+          })
+        }
+
+
+        return slide.style.zIndex = Z_INDEX_OTHERS
+      }
+    })
+  }
+
+  translateFromLeft(slide:HTMLElement){
+    gsap.TweenMax.set(slide, {
+      x:'105%',
+      zIndex:Z_INDEX_TOP
+    })
+    this.translateToCenter(slide)
+  }
+
+  translateFromRight(slide:HTMLElement){
+    gsap.TweenMax.set(slide, {
+      x:'-105%',
+      zIndex:Z_INDEX_TOP
+    })
+    this.translateToCenter(slide)
+  }
+
+  translateToCenter(slide:HTMLElement){
+    return gsap.TweenMax.to(slide, SLIDESHOW_SPEED, {
+      x:'0%',
+      ease:gsap.Power3.easeOut
+    }as any)
   }
 
   $observeNext(){
@@ -169,9 +252,6 @@ export class Slideshow extends AbstractUI {
   }
   $observeBullets(){
     return DOM.click(this.dom.bulletsBtns)
-    .doOnNext( (x)=>{
-      console.log('xxx', x)
-    })
     .map( event=> event.currentTarget )
     .map( el=> 0 )
     .subscribe(x=>{
