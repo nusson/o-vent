@@ -20,13 +20,15 @@ box-sizing-reset()
 html
   font-size fz-base
   background-color c-background
+  color c-black
 
 html
 body
 #app
   width 100%
   height 100%
-  font-family 'OratorStd'
+  font-family ff-default
+  font-weight 300
 
 .article
 .img-wrapper
@@ -45,6 +47,52 @@ input,
 button
   &:focus
     outline:0
+
+.button
+  background none
+  border none
+  color c-black
+  text-transform uppercase
+  letter-spacing 0
+  font-family ff-title
+  line-height 0
+  cursor pointer
+  position relative
+  transition all .3s cubic-bezier(0.75, 0, 0.125, 1)
+  -webkit-backface-visibility hidden
+  -moz-osx-font-smoothing grayscale
+  padding 1.2em 1em .8em
+
+.button
+  &:before,
+  &:after
+    absolute 0 null null 0
+    size 100%
+    content ''
+    z-index -1
+    pointer-events none
+    transition transform .3s, opacity 0.3s
+    transition-timing-function cubic-bezier(0.75, 0, 0.125, 1)
+    transform scale3d(1.1, 1.1, 1)
+    -webkit-backface-visibility hidden
+  &:before
+    opacity 0
+    z-index -1
+    border 2px dotted c-white
+  &:after
+    background-color c-white
+  .no-touch &:hover
+    color white
+    // letter-spacing .2em
+    text-shadow 3px 2px rgba(c-black, .3)
+    &:before
+      opacity 1
+      transform scale3d(1, 1, 1)
+    &:after
+      opacity 0
+      transform scale3d(0.8, 0.8, 1)
+
+
 
 
 // [data-cpt="Header"],

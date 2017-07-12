@@ -23,6 +23,9 @@ const WIDTH_DESKTOP   = 1024
 const WIDTH_MOBILE    = 600
 export type Device           = 'desktop'|'tablet'|'mobile'
 
+
+
+
 export class Interface extends AbstractUI{
   header:   Header
   page:     Page

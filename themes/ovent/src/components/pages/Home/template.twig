@@ -14,38 +14,42 @@
     {% endblock header %}
 
     {% block page_content %}
-      {# Create slides data for slideshow component #}
-      {% set slides = [] %}
-      {% for index, slide in 0..(post.slides-1) %}
-        {% set content = '' %}
-        {% set title    = post.custom['slides_'~index~'_title'] %}
-        {% set subtitle = post.custom['slides_'~index~'_subtitle'] %}
-        {% if title %}
-          {% set content = '<h1>'~title~'</h1>' %}
-        {% endif %}
-        {% if subtitle %}
-          {% set content = content~'<h2>'~subtitle~'</h2>' %}
-        {% endif %}
-        {% set slides   = slides|merge([{
-          content:  content,
-          image:    post.custom['slides_'~index~'_background']
-        }]) %}
-      {% endfor %}
-
-      <section class="main-section">
-        {{ block('slideshow') }}
-        {# Buttons (if click, show slideshow) #}
-        {% if post.items %}
-          <div class="actions">
-            {% for index in 0..(post.items-1) %}
-              <button data-id="{{ index }}">{{ post.custom['items_'~index~'_title'] }}</button>
-            {% endfor %}
-          </div>
-        {% endif %}
+      {% if post._thumbnail_id %}
+        {% set image = TimberImage(post._thumbnail_id) %}
+        {% set imageSrc = getSizedSrc(image, 'auto') %}
+        {% set styles = 'background-image:url(\''~imageSrc~'\');' %}
+        {% set classes = '-illustrated' %}
+      {% endif %}
+      <section class="section section-main section-fixed">
+        <div class="background img-wrapper _cover _full">
+          <img src="{{ image.src }}"
+            alt="{{ image.caption }}" />
+        </div>
+        <footer class="footer">
+          <button class="scroll-indicator btn-arrow">
+            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+          </button>
+        </footer>
       </section>
 
       {% if post.items %}
+
         {# slideshows - would appear in place of header #}
+        <section class="section section-content article">
+          <div class="content">
+            {{ post.content }}
+          </div>
+          <footer class="footer actions">
+            {% for index in 0..(post.items-1) %}
+              <button data-id="{{ index }}"
+                class="cta button"
+                data-scrollto="#slideshow-a">{{ post.custom['items_'~index~'_title'] }}</button>
+            {% endfor %}
+          </footer>
+        </section>
+
+        {# slideshows - would appear in place of header #}
+        {% set slideshowIndex = 0 %}
         {% for index in 0..(post.items-1) %}
           {# build an array of slides to adapt with our generic slideshow #}
           {% set images   = post.custom['items_'~index~'_images'] %}
@@ -54,11 +58,8 @@
           {% for index, img in images %}
             {% set slides = slides|merge([{image:img}]) %}
           {% endfor %}
-
-          <section class="second-section">
-            <header class="header">
-              {{ content }}
-            </header>
+          <section class="section section-second section-fixed --{{index}}">
+            {% set slideshowIndex = slideshowIndex + 1 %}
             {{ block('slideshow') }}
           </section>
         {% endfor %}
@@ -68,72 +69,32 @@
   </div>
 {% endblock %}
 
-{% set slideshowIndex = 0 %}
 {% block slideshow %}
   <div class="slideshow -loading"
     data-cpt="Slideshow"
     data-index="{{ slideshowIndex }}">
-    <ol class="slides">
-      {% for index, slide in slides %}
-        {#{{ dump(slide) }}#}
-        {% set image = TimberImage(slide.image) %}
-        {#{{ dump(slide) }}#}
-        <li data-id="{{ index }}"
-          class="slide">
-          {% if slide.content %}
-            <header class="header">
-              {{ slide.content }}
-            </header>
-          {% endif %}
-          <div class="img-wrapper _cover _full">
-            <img src="{{ image.src }}"
-              alt="{{ image.caption }}" />
-          </div>
-        </li>
-      {% endfor %}
-    </ol>
-    <button class="nav previous">
-      <i class="fa fa-angle-left" aria-hidden="true"></i>
-    </button>
-    <button class="nav next">
-      <i class="fa fa-angle-right" aria-hidden="true"></i>
-    </button>
-    <ol class="nav bullets">
-      {% for index, slide in slides %}
-        <button class="bullet" data-id="{{ index }}">-</button>
-      {% endfor %}
-    </ol>
+    <div class="swiper-container">
+      <ol class="swiper-wrapper">
+        {% for index, slide in slides %}
+          {#{{ dump(slide) }}#}
+          {% set image = TimberImage(slide.image) %}
+          {% set imageSrc = getSizedSrc(image, 'auto') %}
+          <li data-id="{{ index }}"
+            class="swiper-slide">
+            {% if slide.content %}
+              <header class="header">
+                {{ slide.content }}
+              </header>
+            {% endif %}
+            <div class="img-wrapper _cover _full">
+              <img src="{{ imageSrc }}"
+                alt="{{ image.caption }}" />
+            </div>
+          </li>
+        {% endfor %}
+      </ol>
+      <div class="swiper-button-prev btn-arrow"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
+      <div class="swiper-button-next btn-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+    </div>
   </div>
-{% endblock %}
-
-{% block slideshow_old %}
-  <article class="slideshow">
-    {% if content %}
-      <header class="header">
-        {{ content }}
-      </header>
-    {% endif %}
-    <ol class="slides">
-      {% for index, image in images %}
-        {% set img = TimberImage(image) %}
-        <li data-id="{{ index }}"
-          class="slide">
-          <img src="{{ img.src }}"
-            alt="{{ img.caption }}" />
-          {#{{ dump(img) }}#}
-        </li>
-      {% endfor %}
-    </ol>
-    <button class="previous">
-      <i class="fa fa-angle-left" aria-hidden="true"></i>
-    </button>
-    <button class="next">
-      <i class="fa fa-angle-right" aria-hidden="true"></i>
-    </button>
-    <ol class="bullets">
-      {% for index, image in images %}
-        <button data-id="{{ index }}">-</button>
-      {% endfor %}
-    </ol>
-  </article>
 {% endblock %}

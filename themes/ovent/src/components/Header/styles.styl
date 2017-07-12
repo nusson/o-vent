@@ -1,5 +1,8 @@
 [data-cpt="Header"]
   position relative
+  display flex
+  justify-content space-between
+  align-items center
 
   pointer-events none
   >*
@@ -12,78 +15,104 @@
 
   .pannel
     position relative
-    width w-menu
-    height 100%
-    background-color c-white
+    width 100%
     z-index 2
-    >.content
-      relative 50% false false 50%
-      padding-bottom h-footer
-      transform translate(-50%, -50%)
-      text-align center
-
-  .pannel[aria-hidden="true"]
-    transform translateX(-100%)
-    + .overlay
-      opacity 0
-      transition-timing-function t-ease-outside
-      pointer-events none
+    text-align right
 
   .menu
-    margin-top 2em
-    padding-top 2vh
+    max-width 800px
+    display inline-block
+    margin-right: 20px
+    &-list
+      display flex
+      justify-content space-between
+      align-items center
 
     .item
       text-transform uppercase
-      margin-bottom 2vh
-      padding-bottom 2em
-      .link
-        padding 1em 0
+      &:not(:first-child)
+        margin-left 1em
 
     .link
-      color black
+      position relative
+      display inline-block
+      color c-black
       text-decoration none
-      font-size fz-medium
-      font-weight bold
-      letter-spacing 0
-      .no-touch &
-        transition letter-spacing t-speed-light t-ease-out
+      font-size fz-light
+      font-weight fw-regular
+      overflow: hidden
+      padding-bottom .2em
+      background rgba(c-white, .3)
+      padding: .4em .5em .1em
+      font-family ff-title
+      line-height 1em
+      .text
+        position relative
+        z-index 2
+      &:after
+        content ''
+        position absolute
+        top 0
+        left 0
+        bottom: 0
+        width 100%
+        border-bottom 2px dotted c-black
+        transform: translateX(-25%)
+        opacity: 0
+        background-color: rgba(c-white, .4)
+        .no-touch &
+          transition all t-speed-medium t-ease-out
       .no-touch &:hover
-        letter-spacing .2em
-        transition-timing-function t-ease-in
       &.current-menu-item
-        letter-spacing .2em
-        font-size fz-highlight
+        color c-black
+        &:after
+          transition-timing-function t-ease-in
+          transform: translateX(0%)
+          opacity: 1
 
   .menu-button
     display none
-    absolute 0 null null 100%
+    absolute 0 100% null null
     border none
     background none
     background-color c-white
     padding 1em
-    transform scale(.8)
     transform-origin top left
 
   &.-sidenav
+    clearfix
+    align-items flex-start
     .pannel
+      float right
       position relative
+      height: 100vh
+      width 60vw
+      min-width 230px
+      max-width 400px
       transform translateX(0%)
       transition transform t-speed-medium t-ease-in
       will-change transform
-      >.content
-        padding-bottom 0
+      background-color c-white
+      .menu
+        size 100%
+        &-list
+          height: 100%
+          flex-direction column
+          justify-content: flex-start
+        &-item
+          padding: 1em
       +.overlay
         opacity .4
         background-color c-white
         transition opacity t-speed-medium t-ease-in
         pointer-events all
       &[aria-hidden="true"]
-        transform translateX(-100%)
+        transform translateX(100%)
         transition-timing-function t-ease-out
         transition-duration t-speed-light
         +.overlay
           opacity 0
+          transition-timing-function t-ease-outside
           pointer-events none
 
     .menu-button

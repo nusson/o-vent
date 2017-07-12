@@ -16,10 +16,12 @@ const log  = Logguer('header')
 require('./index.styl')
 
 const SLIDESHOW_SPEED = .9
-const Z_INDEX_TOP           = '100'
+const Z_INDEX_TOP           = '105'
 const Z_INDEX_BOTTOM        = '50'
 const Z_INDEX_OTHERS        = '1'
 const DELAY_TICK            = 17
+
+let zIndex = 1
 
 interface State{
   index?:     number,
@@ -124,6 +126,7 @@ class SlideshowController{
 export class Slideshow extends AbstractUI {
   controler:SlideshowController
   $subscribscrions: [Rx.IDisposable]
+  current:number
   constructor(el:HTMLElement){
     super(el, false)
 
@@ -141,6 +144,7 @@ export class Slideshow extends AbstractUI {
       length:this.dom.slides.length-1
     })
 
+    this.current = 0;
     this.init();
   }
 
@@ -157,8 +161,8 @@ export class Slideshow extends AbstractUI {
 
   init(){
 
-    // let widthWrapper  = (this.dom.slides.length * 100) + '%'
-    // let widthSlide    = Math.floor((100 / this.dom.slides.length)) + '%'
+    // let widthWrapper  = (this.dom.slides.length * 105) + '%'
+    // let widthSlide    = Math.floor((105 / this.dom.slides.length)) + '%'
     // this.dom.wrapper.style.width = widthWrapper
     // this.dom.slides.forEach( (slide:HTMLElement)=>{
     //   slide.style.width = widthSlide
@@ -166,7 +170,7 @@ export class Slideshow extends AbstractUI {
     // log('init', width)
 
     this.$subscribscrions = [
-      this.controler.subject.subscribe(this.update.bind(this)),
+      this.controler.subject.subscribe(this.updateNew.bind(this)),
       this.$observeNext(),
       this.$observePrevious(),
       this.$observeBullets()
@@ -178,12 +182,164 @@ export class Slideshow extends AbstractUI {
   update(state:State){
     this.dom.slides.forEach((slide:HTMLElement, index:number)=>{
       if(state.direction === 'left' ){ // || state.index === 0
+
+        if(index === this.current){
+          gsap.TweenMax.set(slide, {
+            x:      '0%',
+            zIndex: Z_INDEX_TOP
+          })
+          return setTimeout(()=>{
+            gsap.TweenMax.to(slide, SLIDESHOW_SPEED, {
+              x:      '-105%',
+              ease:gsap.Power3.easeInOut
+            }as any)
+          }, .17)
+        }
+
+        if(index === state.index){
+          gsap.TweenMax.set(slide, {
+            x:      '10%',
+            zIndex: Z_INDEX_BOTTOM
+          })
+          return setTimeout(()=>{
+            gsap.TweenMax.to(slide, SLIDESHOW_SPEED, {
+              x:      '0%',
+              ease:gsap.Power3.easeInOut
+            }as any)
+          }, .17)
+        }
+        return slide.style.zIndex = Z_INDEX_OTHERS
+      }else{
+        if(index === this.current){
+          gsap.TweenMax.set(slide, {
+            x:      '0%',
+            zIndex: Z_INDEX_TOP
+          })
+          return setTimeout(()=>{
+            gsap.TweenMax.to(slide, SLIDESHOW_SPEED, {
+              x:      '105%',
+              ease:gsap.Power3.easeInOut
+            }as any)
+          }, .17)
+        }
+        if(index === state.index){
+          gsap.TweenMax.set(slide, {
+            x:      '-10%',
+            zIndex: Z_INDEX_BOTTOM
+          })
+          return setTimeout(()=>{
+            gsap.TweenMax.to(slide, SLIDESHOW_SPEED, {
+              x:      '0%',
+              ease:gsap.Power3.easeInOut
+            }as any)
+          }, .17)
+        }
+
+
+        return slide.style.zIndex = Z_INDEX_OTHERS
+      }
+    })
+    this.current = state.index;
+  }
+  updatetest(state:State){
+    this.dom.slides.forEach((slide:HTMLElement, index:number)=>{
+      if(state.direction === 'left' ){ // || state.index === 0
+        if(index === state.index){
+          gsap.TweenMax.set(slide, {
+            x:      '10%',
+            zIndex: Z_INDEX_BOTTOM
+          })
+          return setTimeout(()=>{
+            gsap.TweenMax.to(slide, SLIDESHOW_SPEED, {
+              x:      '0%',
+              ease:gsap.Power3.easeInOut
+            }as any)
+          }, .17)
+        }
+        if(state.index === 0){
+          if(index===state.length){
+            gsap.TweenMax.set(slide, {
+              x:      '0%',
+              zIndex: Z_INDEX_TOP
+            })
+            return setTimeout(()=>{
+              gsap.TweenMax.to(slide, SLIDESHOW_SPEED, {
+                x:      '-105%',
+                ease:gsap.Power3.easeInOut
+              }as any)
+            }, .17)
+          }
+        }else{
+          if(index === state.index - 1){
+            gsap.TweenMax.set(slide, {
+              x:      '0%',
+              zIndex: Z_INDEX_TOP
+            })
+            return setTimeout(()=>{
+              gsap.TweenMax.to(slide, SLIDESHOW_SPEED, {
+                x:      '-105%',
+                ease:gsap.Power3.easeInOut
+              }as any)
+            }, .17)
+          }
+        }
+        return slide.style.zIndex = Z_INDEX_OTHERS
+      }else{
+        if(index === state.index){
+          gsap.TweenMax.set(slide, {
+            x:      '-10%',
+            zIndex: Z_INDEX_BOTTOM
+          })
+          return setTimeout(()=>{
+            gsap.TweenMax.to(slide, SLIDESHOW_SPEED, {
+              x:      '0%',
+              ease:gsap.Power3.easeInOut
+            }as any)
+          }, .17)
+        }
+        if(state.index === state.length){
+          if(index===0){
+            gsap.TweenMax.set(slide, {
+              x:      '0%',
+              zIndex: Z_INDEX_TOP
+            })
+            return setTimeout(()=>{
+              gsap.TweenMax.to(slide, SLIDESHOW_SPEED, {
+                x:      '105%',
+                ease:gsap.Power3.easeInOut
+              }as any)
+            }, .17)
+          }
+        }else{
+          if(index === state.index + 1){
+            gsap.TweenMax.set(slide, {
+              x:      '0%',
+              zIndex: Z_INDEX_TOP
+            })
+            return setTimeout(()=>{
+              gsap.TweenMax.to(slide, SLIDESHOW_SPEED, {
+                x:      '105%',
+                ease:gsap.Power3.easeInOut
+              }as any)
+            }, .17)
+          }
+        }
+
+
+        return slide.style.zIndex = Z_INDEX_OTHERS
+      }
+    })
+    this.current = state.index;
+  }
+  updateOld(state:State){
+    this.dom.slides.forEach((slide:HTMLElement, index:number)=>{
+      if(state.direction === 'left' ){ // || state.index === 0
         if(index === state.index){
           return this.translateFromLeft(slide)
         }
         if(index === state.index - 1){
           return gsap.TweenMax.set(slide, {
-            x:      0,
+            x:      '0%',
             zIndex: Z_INDEX_BOTTOM
           })
         }
@@ -211,11 +367,42 @@ export class Slideshow extends AbstractUI {
       }
     })
   }
+  updateNew(state:State){
+    zIndex ++;
+    this.dom.slides.forEach((slide:HTMLElement, index:number)=>{
+      if(state.direction === 'left' ){ // || state.index === 0
+        if(index === state.index){
+          return this.translateFromLeft(slide)
+        }
+        // return slide.style.zIndex = Z_INDEX_OTHERS
+      }else{
+        if(index === state.index){
+          return this.translateFromRight(slide)
+        }
+        // if(state.index === state.length){
+        //   if(index === 0){
+        //     return gsap.TweenMax.set(slide, {
+        //       x:      0,
+        //       zIndex: Z_INDEX_BOTTOM
+        //     })
+        //   }
+        // }else if(index === state.index + 1){
+        //   return gsap.TweenMax.set(slide, {
+        //     x:      0,
+        //     zIndex: Z_INDEX_BOTTOM
+        //   })
+        // }
+
+
+        // return slide.style.zIndex = Z_INDEX_OTHERS
+      }
+    })
+  }
 
   translateFromLeft(slide:HTMLElement){
     gsap.TweenMax.set(slide, {
       x:'105%',
-      zIndex:Z_INDEX_TOP
+      zIndex:zIndex+1
     })
     this.translateToCenter(slide)
   }
@@ -223,7 +410,7 @@ export class Slideshow extends AbstractUI {
   translateFromRight(slide:HTMLElement){
     gsap.TweenMax.set(slide, {
       x:'-105%',
-      zIndex:Z_INDEX_TOP
+      zIndex:zIndex+1
     })
     this.translateToCenter(slide)
   }

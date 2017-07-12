@@ -27,9 +27,10 @@
         left 0
 
     >.content
-      position absolute
-      bottom 0
+      absolute false 0 0 0
       padding 0 safe-padding
+      max-width w-max
+      margin: 0 auto
       line-height lh-default
       font-size fz-title
       font-weight bold
@@ -54,6 +55,8 @@
 
   /* [_WYS_] wysiwig (align images) */
   .article
+    max-width w-max
+    margin: 0 auto
     p
       padding 0 safe-padding 1em
       &.no-margin

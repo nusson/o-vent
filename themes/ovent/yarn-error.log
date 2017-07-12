@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\nusson\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add gsap
+  C:\Program Files\nodejs\node.exe C:\Users\nusson\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @types/swiper
 
 PATH: 
   C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Sublime Text 3;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files (x86)\Skype\Phone\;C:\Users\nusson\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\nusson\AppData\Roaming\npm;C:\Users\nusson\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\nusson\AppData\Roaming\nvm;C:\Program Files\nodejs
@@ -28,6 +28,7 @@ npm manifest:
       "extract-text-webpack-plugin": "^2.1.0",
       "file-loader": "^0.10.1",
       "google-maps": "^3.2.1",
+      "gsap": "^1.19.1",
       "immutable": "^3.8.1",
       "jeet": "^7.1.0",
       "json-loader": "^0.5.4",
@@ -40,12 +41,14 @@ npm manifest:
       "rx-dom": "^7.0.3",
       "rxjs": "^5.2.0",
       "sass-loader": "^6.0.3",
+      "scrollmagic": "^2.0.5",
       "source-map-loader": "^0.1.6",
       "string": "^3.3.3",
       "style-loader": "^0.13.2",
       "stylus": "^0.54.5",
       "stylus-loader": "^3.0.1",
       "svg-sprite-loader": "^0.3.0",
+      "swiper": "^3.4.2",
       "ts-loader": "^2.0.1",
       "typed-immutable-record": "^0.0.6",
       "types": "gsap1.1.1",
@@ -1809,6 +1812,10 @@ Lockfile:
   "graceful-readlink@>= 1.0.0":
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
+  
+  gsap@^1.19.1:
+    version "1.19.1"
+    resolved "https://registry.yarnpkg.com/gsap/-/gsap-1.19.1.tgz#480d320c662337c2663f836baf45e91ea024b553"
   
   handle-thing@^1.2.4:
     version "1.2.5"
@@ -3717,6 +3724,10 @@ Lockfile:
     version "1.2.2"
     resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.2.tgz#fd8631a23bc7826bef5d871bdb87378c95647828"
   
+  scrollmagic@^2.0.5:
+    version "2.0.5"
+    resolved "https://registry.yarnpkg.com/scrollmagic/-/scrollmagic-2.0.5.tgz#ad7597341c76fb1f4a5bec12968a09223bd08dd9"
+  
   scss-tokenizer@^0.2.1:
     version "0.2.1"
     resolved "https://registry.yarnpkg.com/scss-tokenizer/-/scss-tokenizer-0.2.1.tgz#07c0cc577bb7ab4d08fd900185adbf4bc844141d"
@@ -4167,6 +4178,10 @@ Lockfile:
       mkdirp "~0.5.1"
       sax "~1.2.1"
       whet.extend "~0.9.9"
+  
+  swiper@^3.4.2:
+    version "3.4.2"
+    resolved "https://registry.yarnpkg.com/swiper/-/swiper-3.4.2.tgz#39d6b410b1a39833e1f72d3b72999df5f5e38392"
   
   symbol-observable@^1.0.1:
     version "1.0.4"
@@ -4689,4 +4704,4 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yeast/-/yeast-0.1.2.tgz#008e06d8094320c372dbc2f8ed76a0ca6c8ac419"
 
 Trace: 
-  Error: ENOENT: no such file or directory, lstat 'C:\stock\www\ovent\httpdocs\wp-content\themes\ovent\node_modules\acorn'
+  Error: EPERM: operation not permitted, unlink 'C:\stock\www\ovent\httpdocs\wp-content\themes\ovent\node_modules\autoprefixer\node_modules\.bin'

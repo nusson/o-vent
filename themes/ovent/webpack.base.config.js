@@ -52,6 +52,11 @@ module.exports = function(env){
         app:      PATH_SRC,
         assets:   PATH_ASSETS,
         TweenMax: "gsap/src/uncompressed/TweenMax",
+        TweenLite: "gsap/src/uncompressed/TweenLite",
+        TimelineMax: "gsap/src/uncompressed/TimelineMax",
+        TimelineLite: "gsap/src/uncompressed/TimelineLite",
+        ScrollMagic: "scrollMagic/scrollmagic/uncompressed/ScrollMagic.js",
+        AnimationPlugin: "scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap"
       },
       // Add '.ts' and '.tsx' as resolvable extensions.
       extensions: [".webpack.js", ".web.js",".js", ".json",
@@ -115,46 +120,14 @@ module.exports = function(env){
           })
         },
         {
-          test: /\.s?css$/,
-          exclude: [
-            path.resolve(__dirname, "node_modules"),
-          ],
+          test: /\.css$/,
           use: cssExtract.extract({
             fallback: [{
               loader: 'style-loader',
             }],
             use:
             [
-              'css-loader?importLoaders=1',
-              {
-                loader: 'stylus-loader',
-                options: {
-                  includePaths: [
-                    path.resolve(PATH_SRC, 'styles')
-                  ],
-                  stylus: {
-                    preferPathResolver: 'webpack',
-                  }
-                }
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  plugins: function () {
-                    return [
-                      autoprefixer({
-                        browsers: ['iOS >= 9', 'ChromeAndroid >= 50']
-                      })
-                    ];
-                  }
-                }
-              },
-              {
-                loader: 'sass-loader',
-                options: {
-                  includePaths: [PATH_SRC]
-                }
-              }
+              'css-loader?importLoaders=1'
             ]
           })
         }

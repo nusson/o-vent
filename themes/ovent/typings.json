@@ -1,6 +1,7 @@
 {
   "globalDependencies": {
-    "require": "file:typings/custom/require.d.ts"
+    "require": "file:typings/custom/require.d.ts",
+    "scrollmagic": "file:typings/custom/scrollmagic.d.ts"
   },
   "dependencies": {
     "lodash": "registry:npm/lodash#4.0.0+20161015015725"

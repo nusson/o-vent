@@ -21,6 +21,10 @@ const htmlInjector:any          = require('bs-html-injector');
 const webpackConfig:any         = require('../webpack.dev-web.config');
 const bundler                   = webpack(webpackConfig);
 
+declare var ScrollMagic:{
+  Controller:any,
+  Scene:any
+};
 // recommended: clean your build folder
 
 // setup html injector, only compare differences within outer most div (#page)

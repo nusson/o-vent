@@ -113,7 +113,7 @@ class PLL_Plugins_Compat {
 	 * @return array
 	 */
 	function wp_import_terms( $terms ) {
-		include( PLL_SETTINGS_INC . '/languages.php' );
+		include PLL_SETTINGS_INC . '/languages.php';
 
 		foreach ( $terms as $key => $term ) {
 			if ( 'language' === $term['term_taxonomy'] ) {
@@ -362,12 +362,13 @@ class PLL_Plugins_Compat {
 	 */
 	public function add_language_home_urls( $str ) {
 		global $wpseo_sitemaps;
+		$renderer = version_compare( WPSEO_VERSION, '3.2', '<' ) ? $wpseo_sitemaps : $wpseo_sitemaps->renderer;
 
 		$languages = wp_list_pluck( wp_list_filter( PLL()->model->get_languages_list() , array( 'active' => false ), 'NOT' ), 'slug' );
 
 		foreach ( $languages as $lang ) {
 			if ( empty( PLL()->options['hide_default'] ) || pll_default_language() !== $lang ) {
-				$str .= $wpseo_sitemaps->sitemap_url( array(
+				$str .= $renderer->sitemap_url( array(
 					'loc' => pll_home_url( $lang ),
 					'pri' => 1,
 					'chf' => apply_filters( 'wpseo_sitemap_homepage_change_freq', 'daily', pll_home_url( $lang ) ),
@@ -653,7 +654,7 @@ class PLL_Plugins_Compat {
 	 * @since 2.0.10
 	 */
 	public function twenty_seventeen_init() {
-		if ( 'twentyseventeen' === get_template() && did_action( 'pll_init' ) && PLL() instanceof PLL_Frontend ) {
+		if ( 'twentyseventeen' === get_template() && function_exists( 'twentyseventeen_panel_count' ) && did_action( 'pll_init' ) && PLL() instanceof PLL_Frontend ) {
 			$num_sections = twentyseventeen_panel_count();
 			for ( $i = 1; $i < ( 1 + $num_sections ); $i++ ) {
 				add_filter( 'theme_mod_panel_' . $i, 'pll_get_post' );

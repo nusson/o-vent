@@ -11,32 +11,30 @@
 
 <header data-cpt="Header" class="header">
 
+  <a href="/{{lang}}"
+    class="logo"
+    title="{{ pll__('LOGO_LINK_TITLE') }}">
+    <img src="{{ paths.images }}/logo.png"
+      alt="{{ pll__('LOGO_ALT') }}">
+  </a>
+
   <div class="pannel"
     aria-hidden="{{ mobile }}">
-    <div class="content">
-      <a href="/{{lang}}"
-        class="logo"
-        title="{{ pll__('LOGO_LINK_TITLE') }}">
-        <img src="{{ paths.images }}/logo.png"
-          alt="{{ pll__('LOGO_ALT') }}">
-      </a>
-
-      <nav role="navigation"
-        class="menu -primary">
-        <ol class="menu-list">
-          {% for item in menus['primary'].get_items %}
-            <li class="item">
-              {% set title=(item.attr_title != '')? item.attr_title : item.title %}
-              <a href="{{ item.get_link }}"
-                class="link {{ item.class }}"
-                title="{{ item.post_title }}"
-                target="{{ item.target }}">
-                <span class="text">{{ item.title }}</span>
-              </a>
-            </li>
-          {% endfor %}
-        </ol>
-      </div>
+    <nav role="navigation"
+      class="menu -primary">
+      <ol class="menu-list">
+        {% for item in menus['primary'].get_items %}
+          <li class="item">
+            {% set title=(item.attr_title != '')? item.attr_title : item.title %}
+            <a href="{{ item.get_link }}"
+              class="link {{ item.class }}"
+              title="{{ item.post_title }}"
+              target="{{ item.target }}">
+              <span class="text">{{ item.title }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ol>
     </nav>
     <button class="menu-button burger -spin-r" type="button">
       <span class="box">

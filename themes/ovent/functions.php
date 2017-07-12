@@ -30,6 +30,7 @@
 if(session_id() == '')
    session_start();
 
+
 // setlocale(LC_ALL, 'fr_FR');
 
 /*------------------------------------*\
@@ -72,9 +73,9 @@ if(session_id() == '')
 \*------------------------------------*/
 add_action( 'after_setup_theme', 'ovent_images_sizes' );
 function ovent_images_sizes() {
-  add_image_size( 'mobile', 640 );
-  add_image_size( 'tablet', 1440 );
-  add_image_size( 'desktop', 1920 );
+  add_image_size( 'small', 640 );
+  // add_image_size( 'tablet', 1440 );
+  // add_image_size( 'desktop', 1920 );
 }
 
 /*------------------------------------*\
@@ -284,9 +285,24 @@ class StarterSite extends TimberSite {
   function getSizedSrc($image, $size="auto"){
     $src  = $image->src;
     if($size === 'auto'){
-      if(wpmd_is_phone()){          $size = 'mobile';  }
-      elseif(wpmd_is_tablet()){     $size = 'tablet';  }
-      else{                         $size = 'desktop'; }
+      if(wpmd_is_phone()){          $size = 'small';  }
+      elseif(wpmd_is_tablet()){     $size = 'medium';  }
+      else{                         $size = 'large'; }
+    }
+    // if no size, will pick bigger one
+    if(!isset($image->sizes[$size])){
+      return $image->src;
+      // $sizes = ['thumbnail', 'small', 'medium', 'medium-large', 'large'];
+      // $loop = true;
+      // while($loop){
+      //   if(count($sizes) <= 0){
+      //     $loop = false;
+      //   }
+      //   $size = array_pop($sizes);
+      //   if(isset($image->sizes[$size])){
+      //     $loop = false;
+      //   }
+      // }
     }
     if(isset($image->sizes[$size])){
       if(isset($image->sizes[$size]['file'])){
