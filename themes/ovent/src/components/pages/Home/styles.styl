@@ -52,20 +52,26 @@
       display inline-block
       color rgba(c-black, .4)
       i:before
-        text-shadow: 1px 4px 0px white;
+        position relative
+        text-shadow: -2px 0px 0px white;
+        // transform: scale(.4)
         transition all t-speed-light easing('in-out-back')
       .no-touch &
         transition all t-speed-light easing('in-out-back')
         &:hover
-          transform: translateY(.3em) scale(.8)
           i:before
-            text-shadow: -2px -4px 0px white;
+            text-shadow: 4px 0px 0px white;
       &.swiper-button-prev
+        i:before
+          text-shadow: 2px 0px 0px white;
         .no-touch &:hover
-            transform: translateX(-.2em) scale(.8)
+          transform: translateX(-.2em) scale(1.1)
+          i:before
+            text-shadow: -4px 0px 0px white;
       &.swiper-button-next
+        margin-right: 10px
         .no-touch &:hover
-            transform: translateX(.2em) scale(.8)
+            transform: translateX(.2em) scale(1.1)
 
     &-main
       height 100vh

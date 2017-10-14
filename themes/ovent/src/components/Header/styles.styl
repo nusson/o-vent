@@ -8,6 +8,14 @@
   >*
     pointer-events all
 
+  .logo
+    margin: 10px
+    width 80px
+    display inline-block
+    >img
+      width 100%
+      display block
+
   .overlay
     pointer-events none
     fixed 0
@@ -59,7 +67,7 @@
         border-bottom 2px dotted c-black
         transform: translateX(-25%)
         opacity: 0
-        background-color: rgba(c-white, .4)
+        background-color: rgba(c-white, .6)
         .no-touch &
           transition all t-speed-medium t-ease-out
       .no-touch &:hover
@@ -94,6 +102,7 @@
       will-change transform
       background-color c-white
       .menu
+        margin-top 20px
         size 100%
         &-list
           height: 100%

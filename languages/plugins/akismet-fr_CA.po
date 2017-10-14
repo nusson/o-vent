@@ -11,16 +11,16 @@ msgstr ""
 "Language: fr_CA\n"
 "Project-Id-Version: Plugins - Akismet - Stable (latest release)\n"
 
-#: views/config.php:224
+#: views/config.php:222
 msgid "Upgrade"
 msgstr "Mise à jour"
 
-#: class.akismet-admin.php:88 class.akismet-admin.php:218
-#: class.akismet-admin.php:631 views/config.php:60
+#: class.akismet-admin.php:88 class.akismet-admin.php:220
+#: class.akismet-admin.php:633 views/config.php:60
 msgid "Settings"
 msgstr "Paramètres"
 
-#: class.akismet-admin.php:230 views/config.php:179
+#: class.akismet-admin.php:233 views/config.php:177
 msgid "Account"
 msgstr "Compte"
 
@@ -28,11 +28,11 @@ msgstr "Compte"
 msgid "Title:"
 msgstr "Titre&nbsp;:"
 
-#: class.akismet-admin.php:234 views/config.php:194
+#: class.akismet-admin.php:237 views/config.php:192
 msgid "Status"
 msgstr "État"
 
-#: views/config.php:199
+#: views/config.php:197
 msgid "Cancelled"
 msgstr "Annulé"
 
@@ -40,10 +40,10 @@ msgstr "Annulé"
 msgid "Automattic"
 msgstr "Automattic"
 
-#: views/config.php:138
+#: views/config.php:135
 msgid "Note:"
 msgstr "Note:"
 
-#: views/config.php:207
+#: views/config.php:205
 msgid "Active"
 msgstr "Actif"

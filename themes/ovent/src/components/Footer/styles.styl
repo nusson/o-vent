@@ -3,9 +3,15 @@
 
   display flex
   align-items center
+  flex-direction: column
+  justify-content space-around
+  >*
+    padding: safe-padding
 
   .credits
-    border-left 1px solid c-black
+    width 100%
+    max-width w-max
+    border-top 1px solid c-black
     flex-grow 1
     display flex
     justify-content space-around
@@ -13,13 +19,18 @@
       max-height h-footer - 20
 
   .address
-    padding 0 safe-padding
-    margin-right 20px
+    // margin-right 20px
     position relative
     display inline-block
     font-weight bold
-    font-size fz-medium
+    font-size 1.4rem
     line-height lh-text
+    display flex
+    justify-content: space-between
+    align-items: flex-end
+    line-height: 1.5
+    >*
+      margin: 0 20px
     a
       display block
       color c-black
@@ -31,19 +42,23 @@
           transition-timing-function t-ease-in
 
       &.facebook
-        absolute null 40px 3px null
         font-size 30px
-
+        line-height: 0
 
   .-device-mobile &,
   .-device-tablet &
     display block
-    height 280px
     padding-top 20px
-    .address
-      margin 0 0 2em 0
-    .separator
-      display none
     .credits
       border none
+
+  @media screen and (max-width: 500px)
+    .address
+      flex-direction: column
+      align-items: flex-start
+      >*
+        margin: 0
+    .credits
+      justify-content space-between
+      flex-wrap wrap
 
