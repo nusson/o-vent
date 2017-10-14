@@ -6,16 +6,16 @@
 
 var ScrollMagic = require('ScrollMagic') //import * as ScrollMagic         from 'ScrollMagic'
 require('AnimationPlugin')
+const TweenMax:any = require('TweenMax')
+const EasePack:any = require('EasePack')
+require('ScrollToPlugin')
 require('swiper/dist/css/swiper.css')
-import {TweenMax}       from 'gsap'
 import * as Swiper       from 'swiper'
 import { IUI, AbstractUI }      from 'app/helpers/AbstractUI'
 import { Shops }                from 'app/components/Shops'
 import { Logguer }              from "app/helpers/logguer"
 // import { Slideshow }            from "app/components/UI/Slideshow"
-
 // console.log(Linear);
-
 const log  = Logguer('page')
 require('./styles')
 
@@ -28,29 +28,11 @@ export class Homepage extends AbstractUI implements IHome{
 
     this.dom = Object.assign({}, this.dom, {
       slideshows: this.el.querySelectorAll('[data-cpt="Slideshow"]'),
-      actions: this.el.querySelectorAll('[data-cpt="Slideshow"]')
+      scrollers: this.el.querySelectorAll('[data-scrollto]'),
     })
 
     this.initialize()
 
-		// var controller = new (ScrollMagic as any).Controller({
-		// 	globalSceneOptions: {
-		// 		triggerHook: 'onLeave'
-		// 	}
-		// });
-
-		// // get all slides
-		// var slides = document.querySelectorAll(".section-second");
-
-		// // create scene for every slide
-		// for (var i=0; i<slides.length; i++) {
-		// 	new (ScrollMagic as any).Scene({
-		// 			triggerElement: slides[i]
-		// 		})
-		// 		.setPin(slides[i])
-		// 		// .addIndicators() // add indicators (requires plugin)
-		// 		.addTo(controller);
-		// }
   }
 
   initialize(){
@@ -60,14 +42,20 @@ export class Homepage extends AbstractUI implements IHome{
       nextButton: '.swiper-button-next',
       prevButton: '.swiper-button-prev',
     })
-    // this.dom.slideshows.forEach((el:Element)=>{
-    //   // new Slideshow(el)
-    //   new (Swiper as any)(el as any)
-    // });
-
-
 
     this.initScrollMagic()
+
+    this.dom.scrollers.forEach((el:HTMLElement)=>{
+      el.addEventListener('click', (event:MouseEvent)=>{
+        const target:HTMLElement = this.el.querySelector(el.dataset.scrollto) as HTMLElement
+        TweenMax.to(window, 1, {
+          scrollTo: {
+            y: target.offsetTop
+          },
+          ease: (EasePack.Power3 as any).easeInOut
+        })
+      })
+    })
   }
 
   initScrollMagic(){

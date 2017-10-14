@@ -52,9 +52,11 @@ module.exports = function(env){
         app:      PATH_SRC,
         assets:   PATH_ASSETS,
         TweenMax: "gsap/src/uncompressed/TweenMax",
+        EasePack: "gsap/src/uncompressed/easing/EasePack",
         TweenLite: "gsap/src/uncompressed/TweenLite",
         TimelineMax: "gsap/src/uncompressed/TimelineMax",
         TimelineLite: "gsap/src/uncompressed/TimelineLite",
+        ScrollToPlugin: "gsap/src/uncompressed/plugins/ScrollToPlugin",
         ScrollMagic: "scrollMagic/scrollmagic/uncompressed/ScrollMagic.js",
         AnimationPlugin: "scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap"
       },
